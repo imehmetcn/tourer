@@ -1,0 +1,16 @@
+{
+    "google_api_key": "",
+    "maintenance": false,
+    "db_host": "127.0.0.1",
+    "db_port": "3306",
+    "db_name": "mytransfers",
+    "db_user": "mytransfers_user",
+  "db_pass": "StrongPass!123",
+  "payment_provider": "mock",
+  "currency": "EUR",
+  "iyzico_api_key": "",
+  "iyzico_secret": "",
+  "iyzico_base_url": "https://sandbox-api.iyzipay.com",
+  "iyzico_callback_url": "http://localhost/mytransfers/api/payment/webhook"
+  }
+  

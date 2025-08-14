@@ -1,0 +1,42 @@
+{
+    "regions": {
+      "ANTALYA": {
+        "keywords": ["Antalya", "AYT", "GZP", "Gazipaşa", "Alanya", "Kemer"],
+        "zones": [
+          "AYT",
+          "MURATPAŞA KONYAALTI KEPEZ",
+          "LARA",
+          "KUNDU",
+          "BELEK",
+          "ÇOLAKLI",
+          "SİDE",
+          "KIZILAĞAÇ",
+          "KIZILOT",
+          "AVSALLAR",
+          "TÜRKLER",
+          "KONAKLI",
+          "ALANYA",
+          "MAHMUTLAR",
+          "GAZİPAŞA",
+          "GZP",
+          "BELDİBİ",
+          "GÖYNÜK",
+          "KEMER",
+          "KİRİŞ",
+          "ÇAMYUVA",
+          "TEKİROVA",
+          "ÇIRALI",
+          "OLYMPOS",
+          "ADRASAN",
+          "KUMLUCA",
+          "FİNİKE",
+          "DEMRE",
+          "KAŞ",
+          "KALKAN"
+        ]
+      },
+      "MUĞLA": { "keywords": ["Muğla","Bodrum","Dalaman","DLM"], "zones": [] },
+      "AYDIN": { "keywords": ["Aydın","Kuşadası","Didim"], "zones": [] },
+      "İZMİR": { "keywords": ["İzmir","ADB"], "zones": [] }
+    }
+  }

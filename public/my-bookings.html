@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>My Bookings</title>
+	<style>
+		body{font-family:Arial, sans-serif; background:#f6f7fb; margin:0; padding:24px}
+		.container{max-width:780px; margin:0 auto; background:#fff; padding:24px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+		.h{margin:0 0 12px}
+		.row{display:flex; gap:12px; flex-wrap:wrap}
+		.row>*{flex:1}
+		.input{width:100%; padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px}
+		.btn{padding:10px 16px; background:#09AFEE; color:#fff; border:none; border-radius:8px; cursor:pointer}
+		.pre{background:#0b1220; color:#d1d5db; padding:12px; border-radius:8px; overflow:auto}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2 class="h">My Bookings</h2>
+		<p>Enter your Booking ID and e‑mail to retrieve your reservation.</p>
+		<div class="row">
+			<input class="input" id="booking" placeholder="Booking ID (e.g. bk_...)" />
+			<input class="input" id="email" placeholder="Email (optional if not set)" />
+		</div>
+		<div style="margin-top:12px">
+			<button class="btn" onclick="lookup()">Find Booking</button>
+		</div>
+		<div id="msg" style="color:#b00020; margin-top:8px"></div>
+		<h3 style="margin-top:16px">Result</h3>
+		<pre class="pre" id="out">{}</pre>
+	</div>
+
+	<script>
+	async function lookup(){
+		const booking = document.getElementById('booking').value.trim();
+		const email = document.getElementById('email').value.trim();
+		const msg = document.getElementById('msg');
+		msg.textContent='';
+		if(!booking){ msg.textContent='Please enter booking id'; return; }
+		try{
+			const qs = new URLSearchParams({ booking_id: booking });
+			if(email) qs.set('email', email);
+			const res = await fetch('/mytransfers/api/booking?'+qs.toString());
+			const json = await res.json();
+			if(!res.ok){ msg.textContent = json.error || 'Not found'; document.getElementById('out').textContent = JSON.stringify(json,null,2); return; }
+			document.getElementById('out').textContent = JSON.stringify(json, null, 2);
+		}catch(e){ msg.textContent = e.message; }
+	}
+	</script>
+</body>
+</html>
+
+

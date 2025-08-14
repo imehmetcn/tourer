@@ -1,0 +1,56 @@
+[
+    {
+        "booking_id": "bk_20d70ddd409e",
+        "status": "pending_payment",
+        "amount": {
+            "amount": 4727.7,
+            "currency": "EUR"
+        },
+        "payment": {
+            "type": "redirect",
+            "url": "/payment?booking_id=bk_20d70ddd409e"
+        },
+        "pickup_date": "2025-08-14T07:51:14.761Z",
+        "return_date": "2025-08-14T09:51:14.761Z",
+        "passengers": 2,
+        "pickup": {
+            "name": "Pickup",
+            "lat": 40.472,
+            "lng": 40.4168
+        },
+        "dropoff": {
+            "name": "Dropoff",
+            "lat": 10,
+            "lng": 20
+        },
+        "offer_id": "offer_1",
+        "created_at": "2025-08-14T09:51:14+02:00"
+    },
+    {
+        "booking_id": "bk_f2578a3493b5",
+        "status": "pending_payment",
+        "amount": {
+            "amount": 49.9,
+            "currency": "EUR"
+        },
+        "payment": {
+            "type": "redirect",
+            "url": "/payment?booking_id=bk_f2578a3493b5"
+        },
+        "pickup_date": "2025-08-14T07:48:36.009Z",
+        "return_date": "2025-08-14T09:48:36.010Z",
+        "passengers": 2,
+        "pickup": {
+            "name": "Pickup",
+            "lat": null,
+            "lng": null
+        },
+        "dropoff": {
+            "name": "Dropoff",
+            "lat": null,
+            "lng": null
+        },
+        "offer_id": "offer_1",
+        "created_at": "2025-08-14T09:48:36+02:00"
+    }
+]
