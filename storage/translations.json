@@ -1,0 +1,852 @@
+{
+    "en": {
+        "continue": "Continue",
+        "pay": "Place order",
+        "loading": "loading..",
+        "send_by": "Mytransfers Offer",
+        "free": " Free",
+        "mins": "mins",
+        "locale_lang": "en",
+        "locale": "en-us",
+        "adult": "Adult",
+        "adults": "Adults",
+        "minors": "Minors",
+        "oneway": "One-way",
+        "roundtrip": "Round-Trip",
+        "msn_error": "An error has occurred at the end of the process, please contact customer service or retry again.",
+        "pickup_date_flight": "Flight arrival date & time",
+        "pickup_date_train": "Train arrival date & time",
+        "pickup_date_port": "Disembarkation date & time",
+        "pickup_date_address": "Pickup date & time",
+        "dropoff_date_flight": "Flight departure date & time",
+        "dropoff_date_train": "Train departure date & time",
+        "dropoff_date_port": "Port departure date & time",
+        "dropoff_date_address": "Dropoff date & time",
+        "msn_searchbox_date_pickup": "Please select your flight arrival hour. We monitor all flights and our driver will be waiting for you",
+        "msn_searchbox_date_dropoff": "Please select your flight departure time. You can choose the pickup hour from your hotel/address on the last step",
+        "msn_searchbox_date_airport_to_airport": "Please select your flight arrival hour. We monitor all flights and our driver will be waiting for you",
+        "msn_searchbox_pickuptime": "Please choose your pick-up time",
+        "msn_searchbox_pickupdate": "Select your departure date",
+        "msn_searchbox_returndate": "Select your return date",
+        "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+        ],
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "payment": {
+            "name": "Select payment method",
+            "description": "Select from the list of payment methods",
+            "img": "/img/visa.png"
+        },
+        "payments": [
+            {
+                "name": "Credit or debit card",
+                "img": "/img/visa.png",
+                "description": "Pay with a credit card",
+                "code": "creditcard"
+            }
+        ],
+        "list_includes": [
+            {
+                "name": "Free amendments"
+            },
+            {
+                "name": "Professional driver"
+            },
+            {
+                "name": "Instant confirmation"
+            },
+            {
+                "name": "Meet & Greet with welcome sign",
+                "is_meet": true
+            },
+            {
+                "name": "Free cancellations (Up to 24 hours before your arrival)"
+            }
+        ],
+        "list_extras": [
+            {
+                "name": "Door-to-Door"
+            },
+            {
+                "name": "Free child seats"
+            },
+            {
+                "name": "Meet & Greet"
+            }
+        ],
+        "completed": "Completed",
+        "on_hold": "Cancelled",
+        "cancelled": "Cancelled",
+        "noshowprovider": "Cancelled",
+        "processing": "Cancelled",
+        "confirmed": "Completed",
+        "homepage": {
+            "banner_title": "Book your transfer to the Airport or your private ride with ease. Enjoy our service at best rates available.",
+            "why_different_title": "Discover why we are different",
+            "door_to_door_title": "Door To Door",
+            "door_to_door_desc": "From the Airport directly to your destination",
+            "private_transfers_title": "Private Transfers",
+            "private_transfers_desc": "We offer only private transfers, no shared service",
+            "meet_greet_title": "Meet & Greet",
+            "meet_greet_desc": "Our driver will meet & greet you in the arrivals hall",
+            "customer_support_title": "24/7 Customer Support",
+            "customer_support_desc": "We are here to help! Before, during and after your trip",
+            "reviews_title": "Our Reviews",
+            "reviews_rated": "Rated Excellent Based on 7,420 reviews on Trustpilot",
+            "excellent_service": "Excellent Service",
+            "did_you_know_title": "Did you know",
+            "did_you_know_1": "We know that finding a taxi service in a foreign country can be difficult and stressful. Book ahead and enjoy the best service with all inclusive, no surprises.",
+            "did_you_know_2": "MyTransfers offers reliable transfers to and from major airports around the world, safer, more comfortable, and cheaper than the taxi service. We have an appropriate vehicle for every situation.",
+            "did_you_know_3": "You can choose from several available vehicles, so you can always enjoy maximum comfort. Whether you are traveling alone, in pairs or in groups, we have the perfect vehicle for every occasion.",
+            "did_you_know_4": "The driver will pick you up directly from the airport terminal, it will help with your luggage and take you directly to your hotel or any other destination, and vice versa.",
+            "comfort_safety_title": "Maximum comfort and safety during your trip",
+            "comfort_safety_subtitle": "Authorized vehicles, experienced drivers",
+            "economy_class_title": "ECONOMY CLASS",
+            "economy_class_desc": "For a couple or a family with children",
+            "business_class_title": "BUSINESS CLASS",
+            "business_class_desc": "Comfortable for business trips",
+            "groups_title": "FOR GROUPS",
+            "groups_desc": "For groups up to 19 people or with large luggage",
+            "how_it_works_title": "How it works",
+            "step1_title": "Book your airport transfer worldwide",
+            "step1_desc1": "Mytransfers offers private airport transfers bookings with instant confirmation worldwide. We work directly with local drivers and select the best services for our clients. In this way we ensure that your vacation will start in the best possible way.",
+            "step1_desc2": "We constantly review our service to ensure that you will enjoy your ride with Mytransfers in any destination you choose.",
+            "step2_title": "Our easy transfer booking process",
+            "step2_desc": "Choose your origin and destination and in just 3 click you will have your private transfer booked. Forget about long waiting taxi lines at the airport, our driver will be waiting for you with a sign at your arrival.",
+            "step3_title": "Airport, Port or Train Stations",
+            "step3_desc": "With us you can book your private transfer from any airport, port or train station. We monitor the arrival of the means of transport to ensure that your transfer will be carried out on time and with the maximum guarantees of quality and safety.",
+            "popular_destinations_title": "The most popular destinations"
+        },
+        "booking_form": {
+            "search_title": "Are you looking for airport transfers?",
+            "search_subtitle": "You have come to the right place",
+            "oneway": "One-way",
+            "roundtrip": "Round-Trip",
+            "passengers": "Yolcu Sayısı",
+            "adults": "Yetişkin",
+            "children": "Çocuk",
+            "infants": "Bebek",
+            "from": "Nereden",
+            "to": "Nereye",
+            "pickup_location": "Pickup location",
+            "dropoff_location": "Dropoff location",
+            "pickup_date": "Pickup date",
+            "return_date": "Return date",
+            "time": "Time",
+            "add_return": "+ Add return",
+            "search": "Search",
+            "apply": "Apply",
+            "see_more_results": "See more results",
+            "loading": "Loading...",
+            "no_results": "No results",
+            "loading_message": "We are searching for the best transfer options for you...",
+            "loading_wait": "Please wait"
+        },
+        "validation_errors": {
+            "from_required": "Please select a pickup location",
+            "to_required": "Please select a dropoff location",
+            "pickup_date_required": "Please select a pickup date",
+            "return_date_required": "Please select a return date",
+            "general_error": "An error occurred. Please try again."
+        }
+    },
+    "tr": {
+        "continue": "Devam Et",
+        "pay": "Sipariş Ver",
+        "loading": "yükleniyor..",
+        "send_by": "Mytransfers Teklifi",
+        "free": " Ücretsiz",
+        "mins": "dakika",
+        "locale_lang": "tr",
+        "locale": "tr-tr",
+        "adult": "Yetişkin",
+        "adults": "Yetişkin",
+        "minors": "Çocuk",
+        "oneway": "Tek Yön",
+        "roundtrip": "Gidiş-Dönüş",
+        "msn_error": "İşlem sonunda bir hata oluştu, lütfen müşteri hizmetleri ile iletişime geçin veya tekrar deneyin.",
+        "pickup_date_flight": "Uçuş varış tarihi ve saati",
+        "pickup_date_train": "Tren varış tarihi ve saati",
+        "pickup_date_port": "İniş tarihi ve saati",
+        "pickup_date_address": "Alış tarihi ve saati",
+        "dropoff_date_flight": "Uçuş kalkış tarihi ve saati",
+        "dropoff_date_train": "Tren kalkış tarihi ve saati",
+        "dropoff_date_port": "Liman kalkış tarihi ve saati",
+        "dropoff_date_address": "Bırakış tarihi ve saati",
+        "msn_searchbox_date_pickup": "Lütfen uçuş varış saatinizi seçin. Tüm uçuşları takip ediyoruz ve şoförümüz sizi bekliyor olacak",
+        "msn_searchbox_date_dropoff": "Lütfen uçuş kalkış saatinizi seçin. Son adımda otel/adresinizden alış saatini seçebilirsiniz",
+        "msn_searchbox_date_airport_to_airport": "Lütfen uçuş varış saatinizi seçin. Tüm uçuşları takip ediyoruz ve şoförümüz sizi bekliyor olacak",
+        "msn_searchbox_pickuptime": "Lütfen alış saatinizi seçin",
+        "msn_searchbox_pickupdate": "Gidiş tarihinizi seçin",
+        "msn_searchbox_returndate": "Dönüş tarihinizi seçin",
+        "daysOfWeek": [
+            "Paz",
+            "Pzt",
+            "Sal",
+            "Çar",
+            "Per",
+            "Cum",
+            "Cmt"
+        ],
+        "monthNames": [
+            "Ocak",
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs",
+            "Haziran",
+            "Temmuz",
+            "Ağustos",
+            "Eylül",
+            "Ekim",
+            "Kasım",
+            "Aralık"
+        ],
+        "payment": {
+            "name": "Ödeme yöntemini seçin",
+            "description": "Ödeme yöntemleri listesinden seçin",
+            "img": "/img/visa.png"
+        },
+        "payments": [
+            {
+                "name": "Kredi veya banka kartı",
+                "img": "/img/visa.png",
+                "description": "Kredi kartı ile öde",
+                "code": "creditcard"
+            }
+        ],
+        "list_includes": [
+            {
+                "name": "Ücretsiz değişiklik"
+            },
+            {
+                "name": "Profesyonel şoför"
+            },
+            {
+                "name": "Anında onay"
+            },
+            {
+                "name": "Karşılama hizmeti ve hoş geldin tabelası",
+                "is_meet": true
+            },
+            {
+                "name": "Ücretsiz iptal (Varışınızdan 24 saat öncesine kadar)"
+            }
+        ],
+        "list_extras": [
+            {
+                "name": "Kapıdan Kapıya"
+            },
+            {
+                "name": "Ücretsiz çocuk koltuğu"
+            },
+            {
+                "name": "Karşılama Hizmeti"
+            }
+        ],
+        "completed": "Tamamlandı",
+        "on_hold": "İptal Edildi",
+        "cancelled": "İptal Edildi",
+        "noshowprovider": "İptal Edildi",
+        "processing": "İptal Edildi",
+        "confirmed": "Tamamlandı",
+        "homepage": {
+            "banner_title": "Havaalanı transferinizi veya özel yolculuğunuzu kolayca ayırtın. Hizmetimizin keyfini en uygun fiyatlarla çıkarın.",
+            "why_different_title": "Discover why we are different",
+            "door_to_door_title": "Door To Door",
+            "door_to_door_desc": "From the Airport directly to your destination",
+            "private_transfers_title": "Private Transfers",
+            "private_transfers_desc": "We offer only private transfers, no shared service",
+            "meet_greet_title": "Meet & Greet",
+            "meet_greet_desc": "Our driver will meet & greet you in the arrivals hall",
+            "customer_support_title": "24/7 Customer Support",
+            "customer_support_desc": "We are here to help! Before, during and after your trip",
+            "reviews_title": "Our Reviews",
+            "reviews_rated": "Rated Excellent Based on 7,420 reviews on Trustpilot",
+            "excellent_service": "Excellent Service",
+            "did_you_know_title": "Did you know",
+            "did_you_know_1": "We know that finding a taxi service in a foreign country can be difficult and stressful. Book ahead and enjoy the best service with all inclusive, no surprises.",
+            "did_you_know_2": "MyTransfers offers reliable transfers to and from major airports around the world, safer, more comfortable, and cheaper than the taxi service. We have an appropriate vehicle for every situation.",
+            "did_you_know_3": "You can choose from several available vehicles, so you can always enjoy maximum comfort. Whether you are traveling alone, in pairs or in groups, we have the perfect vehicle for every occasion.",
+            "did_you_know_4": "The driver will pick you up directly from the airport terminal, it will help with your luggage and take you directly to your hotel or any other destination, and vice versa.",
+            "comfort_safety_title": "Maximum comfort and safety during your trip",
+            "comfort_safety_subtitle": "Authorized vehicles, experienced drivers",
+            "economy_class_title": "ECONOMY CLASS",
+            "economy_class_desc": "For a couple or a family with children",
+            "business_class_title": "BUSINESS CLASS",
+            "business_class_desc": "Comfortable for business trips",
+            "groups_title": "FOR GROUPS",
+            "groups_desc": "For groups up to 19 people or with large luggage",
+            "how_it_works_title": "How it works",
+            "step1_title": "Book your airport transfer worldwide",
+            "step1_desc1": "Mytransfers offers private airport transfers bookings with instant confirmation worldwide. We work directly with local drivers and select the best services for our clients. In this way we ensure that your vacation will start in the best possible way.",
+            "step1_desc2": "We constantly review our service to ensure that you will enjoy your ride with Mytransfers in any destination you choose.",
+            "step2_title": "Our easy transfer booking process",
+            "step2_desc": "Choose your origin and destination and in just 3 click you will have your private transfer booked. Forget about long waiting taxi lines at the airport, our driver will be waiting for you with a sign at your arrival.",
+            "step3_title": "Airport, Port or Train Stations",
+            "step3_desc": "With us you can book your private transfer from any airport, port or train station. We monitor the arrival of the means of transport to ensure that your transfer will be carried out on time and with the maximum guarantees of quality and safety.",
+            "popular_destinations_title": "The most popular destinations"
+        },
+        "booking_form": {
+            "search_title": "Havaalanı transferi mi arıyorsunuz?",
+            "search_subtitle": "Doğru yere geldiniz.",
+            "oneway": "Tek Yön",
+            "roundtrip": "Gidiş Dönüş",
+            "passengers": "Yolcu Sayısı",
+            "adults": "Yetişkin",
+            "children": "Çocuk",
+            "infants": "Bebek",
+            "from": "Nereden",
+            "to": "Nereye",
+            "pickup_location": "Alınacak Yer",
+            "dropoff_location": "Bırakılacak Yer",
+            "pickup_date": "Uçuş Tarihi",
+            "return_date": "Dönüş Tarihi",
+            "time": "Saat",
+            "add_return": "+ Dönüş Ekle",
+            "search": "Rezervasyon Ara",
+            "apply": "Uygula",
+            "see_more_results": "Daha fazla sonuç gör",
+            "loading": "Loading...",
+            "no_results": "No results",
+            "loading_message": "We are searching for the best transfer options for you...",
+            "loading_wait": "Please wait"
+        },
+        "validation_errors": {
+            "from_required": "Please select a pickup location",
+            "to_required": "Please select a dropoff location",
+            "pickup_date_required": "Please select a pickup date",
+            "return_date_required": "Please select a return date",
+            "general_error": "An error occurred. Please try again."
+        }
+    },
+    "de": {
+        "continue": "Weiter",
+        "pay": "Bestellung aufgeben",
+        "loading": "lädt..",
+        "send_by": "Mytransfers Angebot",
+        "free": " Kostenlos",
+        "mins": "Min",
+        "locale_lang": "de",
+        "locale": "de-de",
+        "adult": "Erwachsener",
+        "adults": "Erwachsene",
+        "minors": "Kinder",
+        "oneway": "Einfach",
+        "roundtrip": "Hin- und Rückfahrt",
+        "msn_error": "Am Ende des Prozesses ist ein Fehler aufgetreten. Bitte wenden Sie sich an den Kundendienst oder versuchen Sie es erneut.",
+        "pickup_date_flight": "Flugankunftsdatum und -zeit",
+        "pickup_date_train": "Zugankunftsdatum und -zeit",
+        "pickup_date_port": "Datum und Zeit der Ausschiffung",
+        "pickup_date_address": "Abholungsdatum und -zeit",
+        "dropoff_date_flight": "Flugabflugdatum und -zeit",
+        "dropoff_date_train": "Zugabfahrtsdatum und -zeit",
+        "dropoff_date_port": "Hafenabfahrtsdatum und -zeit",
+        "dropoff_date_address": "Abgabedatum und -zeit",
+        "msn_searchbox_date_pickup": "Bitte wählen Sie Ihre Flugankunftszeit. Wir überwachen alle Flüge und unser Fahrer wird auf Sie warten",
+        "msn_searchbox_date_dropoff": "Bitte wählen Sie Ihre Flugabflugzeit. Sie können die Abholzeit von Ihrem Hotel/Adresse im letzten Schritt wählen",
+        "msn_searchbox_date_airport_to_airport": "Bitte wählen Sie Ihre Flugankunftszeit. Wir überwachen alle Flüge und unser Fahrer wird auf Sie warten",
+        "msn_searchbox_pickuptime": "Bitte wählen Sie Ihre Abholzeit",
+        "msn_searchbox_pickupdate": "Wählen Sie Ihr Abreisedatum",
+        "msn_searchbox_returndate": "Wählen Sie Ihr Rückkehrdatum",
+        "daysOfWeek": [
+            "So",
+            "Mo",
+            "Di",
+            "Mi",
+            "Do",
+            "Fr",
+            "Sa"
+        ],
+        "monthNames": [
+            "Januar",
+            "Februar",
+            "März",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "Dezember"
+        ],
+        "payment": {
+            "name": "Zahlungsmethode auswählen",
+            "description": "Aus der Liste der Zahlungsmethoden auswählen",
+            "img": "/img/visa.png"
+        },
+        "payments": [
+            {
+                "name": "Kredit- oder Debitkarte",
+                "img": "/img/visa.png",
+                "description": "Mit Kreditkarte bezahlen",
+                "code": "creditcard"
+            }
+        ],
+        "list_includes": [
+            {
+                "name": "Kostenlose Änderungen"
+            },
+            {
+                "name": "Professioneller Fahrer"
+            },
+            {
+                "name": "Sofortige Bestätigung"
+            },
+            {
+                "name": "Abholung mit Willkommensschild",
+                "is_meet": true
+            },
+            {
+                "name": "Kostenlose Stornierung (Bis zu 24 Stunden vor Ihrer Ankunft)"
+            }
+        ],
+        "list_extras": [
+            {
+                "name": "Tür-zu-Tür"
+            },
+            {
+                "name": "Kostenlose Kindersitze"
+            },
+            {
+                "name": "Abholservice"
+            }
+        ],
+        "completed": "Abgeschlossen",
+        "on_hold": "Storniert",
+        "cancelled": "Storniert",
+        "noshowprovider": "Storniert",
+        "processing": "Storniert",
+        "confirmed": "Abgeschlossen",
+        "homepage": {
+            "banner_title": "Book your transfer to the Airport or your private ride with ease. Enjoy our service at best rates available.",
+            "why_different_title": "Discover why we are different",
+            "door_to_door_title": "Door To Door",
+            "door_to_door_desc": "From the Airport directly to your destination",
+            "private_transfers_title": "Private Transfers",
+            "private_transfers_desc": "We offer only private transfers, no shared service",
+            "meet_greet_title": "Meet & Greet",
+            "meet_greet_desc": "Our driver will meet & greet you in the arrivals hall",
+            "customer_support_title": "24/7 Customer Support",
+            "customer_support_desc": "We are here to help! Before, during and after your trip",
+            "reviews_title": "Our Reviews",
+            "reviews_rated": "Rated Excellent Based on 7,420 reviews on Trustpilot",
+            "excellent_service": "Excellent Service",
+            "did_you_know_title": "Did you know",
+            "did_you_know_1": "We know that finding a taxi service in a foreign country can be difficult and stressful. Book ahead and enjoy the best service with all inclusive, no surprises.",
+            "did_you_know_2": "MyTransfers offers reliable transfers to and from major airports around the world, safer, more comfortable, and cheaper than the taxi service. We have an appropriate vehicle for every situation.",
+            "did_you_know_3": "You can choose from several available vehicles, so you can always enjoy maximum comfort. Whether you are traveling alone, in pairs or in groups, we have the perfect vehicle for every occasion.",
+            "did_you_know_4": "The driver will pick you up directly from the airport terminal, it will help with your luggage and take you directly to your hotel or any other destination, and vice versa.",
+            "comfort_safety_title": "Maximum comfort and safety during your trip",
+            "comfort_safety_subtitle": "Authorized vehicles, experienced drivers",
+            "economy_class_title": "ECONOMY CLASS",
+            "economy_class_desc": "For a couple or a family with children",
+            "business_class_title": "BUSINESS CLASS",
+            "business_class_desc": "Comfortable for business trips",
+            "groups_title": "FOR GROUPS",
+            "groups_desc": "For groups up to 19 people or with large luggage",
+            "how_it_works_title": "How it works",
+            "step1_title": "Book your airport transfer worldwide",
+            "step1_desc1": "Mytransfers offers private airport transfers bookings with instant confirmation worldwide. We work directly with local drivers and select the best services for our clients. In this way we ensure that your vacation will start in the best possible way.",
+            "step1_desc2": "We constantly review our service to ensure that you will enjoy your ride with Mytransfers in any destination you choose.",
+            "step2_title": "Our easy transfer booking process",
+            "step2_desc": "Choose your origin and destination and in just 3 click you will have your private transfer booked. Forget about long waiting taxi lines at the airport, our driver will be waiting for you with a sign at your arrival.",
+            "step3_title": "Airport, Port or Train Stations",
+            "step3_desc": "With us you can book your private transfer from any airport, port or train station. We monitor the arrival of the means of transport to ensure that your transfer will be carried out on time and with the maximum guarantees of quality and safety.",
+            "popular_destinations_title": "The most popular destinations"
+        },
+        "booking_form": {
+            "search_title": "Are you looking for airport transfers?",
+            "search_subtitle": "You have come to the right place",
+            "oneway": "One-way",
+            "roundtrip": "Round-Trip",
+            "passengers": "Passengers",
+            "adults": "Adults",
+            "children": "Children",
+            "infants": "Infants",
+            "from": "From",
+            "to": "To",
+            "pickup_location": "Pickup location",
+            "dropoff_location": "Dropoff location",
+            "pickup_date": "Pickup date",
+            "return_date": "Return date",
+            "time": "Time",
+            "add_return": "+ Add return",
+            "search": "Search",
+            "apply": "Apply",
+            "see_more_results": "See more results",
+            "loading": "Loading...",
+            "no_results": "No results",
+            "loading_message": "We are searching for the best transfer options for you...",
+            "loading_wait": "Please wait"
+        },
+        "validation_errors": {
+            "from_required": "Please select a pickup location",
+            "to_required": "Please select a dropoff location",
+            "pickup_date_required": "Please select a pickup date",
+            "return_date_required": "Please select a return date",
+            "general_error": "An error occurred. Please try again."
+        }
+    },
+    "fr": {
+        "continue": "Continuer",
+        "pay": "Passer la commande",
+        "loading": "chargement..",
+        "send_by": "Offre Mytransfers",
+        "free": " Gratuit",
+        "mins": "min",
+        "locale_lang": "fr",
+        "locale": "fr-fr",
+        "adult": "Adulte",
+        "adults": "Adultes",
+        "minors": "Enfants",
+        "oneway": "Aller simple",
+        "roundtrip": "Aller-retour",
+        "msn_error": "Une erreur s'est produite à la fin du processus, veuillez contacter le service client ou réessayer.",
+        "pickup_date_flight": "Date et heure d'arrivée du vol",
+        "pickup_date_train": "Date et heure d'arrivée du train",
+        "pickup_date_port": "Date et heure de débarquement",
+        "pickup_date_address": "Date et heure de prise en charge",
+        "dropoff_date_flight": "Date et heure de départ du vol",
+        "dropoff_date_train": "Date et heure de départ du train",
+        "dropoff_date_port": "Date et heure de départ du port",
+        "dropoff_date_address": "Date et heure de dépose",
+        "msn_searchbox_date_pickup": "Veuillez sélectionner votre heure d'arrivée de vol. Nous surveillons tous les vols et notre chauffeur vous attendra",
+        "msn_searchbox_date_dropoff": "Veuillez sélectionner votre heure de départ de vol. Vous pouvez choisir l'heure de prise en charge de votre hôtel/adresse à la dernière étape",
+        "msn_searchbox_date_airport_to_airport": "Veuillez sélectionner votre heure d'arrivée de vol. Nous surveillons tous les vols et notre chauffeur vous attendra",
+        "msn_searchbox_pickuptime": "Veuillez choisir votre heure de prise en charge",
+        "msn_searchbox_pickupdate": "Sélectionnez votre date de départ",
+        "msn_searchbox_returndate": "Sélectionnez votre date de retour",
+        "daysOfWeek": [
+            "Dim",
+            "Lun",
+            "Mar",
+            "Mer",
+            "Jeu",
+            "Ven",
+            "Sam"
+        ],
+        "monthNames": [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        "payment": {
+            "name": "Sélectionner le mode de paiement",
+            "description": "Sélectionner dans la liste des modes de paiement",
+            "img": "/img/visa.png"
+        },
+        "payments": [
+            {
+                "name": "Carte de crédit ou de débit",
+                "img": "/img/visa.png",
+                "description": "Payer avec une carte de crédit",
+                "code": "creditcard"
+            }
+        ],
+        "list_includes": [
+            {
+                "name": "Modifications gratuites"
+            },
+            {
+                "name": "Chauffeur professionnel"
+            },
+            {
+                "name": "Confirmation instantanée"
+            },
+            {
+                "name": "Accueil avec pancarte de bienvenue",
+                "is_meet": true
+            },
+            {
+                "name": "Annulations gratuites (Jusqu'à 24 heures avant votre arrivée)"
+            }
+        ],
+        "list_extras": [
+            {
+                "name": "Porte à porte"
+            },
+            {
+                "name": "Sièges enfants gratuits"
+            },
+            {
+                "name": "Service d'accueil"
+            }
+        ],
+        "completed": "Terminé",
+        "on_hold": "Annulé",
+        "cancelled": "Annulé",
+        "noshowprovider": "Annulé",
+        "processing": "Annulé",
+        "confirmed": "Terminé",
+        "homepage": {
+            "banner_title": "Book your transfer to the Airport or your private ride with ease. Enjoy our service at best rates available.",
+            "why_different_title": "Discover why we are different",
+            "door_to_door_title": "Door To Door",
+            "door_to_door_desc": "From the Airport directly to your destination",
+            "private_transfers_title": "Private Transfers",
+            "private_transfers_desc": "We offer only private transfers, no shared service",
+            "meet_greet_title": "Meet & Greet",
+            "meet_greet_desc": "Our driver will meet & greet you in the arrivals hall",
+            "customer_support_title": "24/7 Customer Support",
+            "customer_support_desc": "We are here to help! Before, during and after your trip",
+            "reviews_title": "Our Reviews",
+            "reviews_rated": "Rated Excellent Based on 7,420 reviews on Trustpilot",
+            "excellent_service": "Excellent Service",
+            "did_you_know_title": "Did you know",
+            "did_you_know_1": "We know that finding a taxi service in a foreign country can be difficult and stressful. Book ahead and enjoy the best service with all inclusive, no surprises.",
+            "did_you_know_2": "MyTransfers offers reliable transfers to and from major airports around the world, safer, more comfortable, and cheaper than the taxi service. We have an appropriate vehicle for every situation.",
+            "did_you_know_3": "You can choose from several available vehicles, so you can always enjoy maximum comfort. Whether you are traveling alone, in pairs or in groups, we have the perfect vehicle for every occasion.",
+            "did_you_know_4": "The driver will pick you up directly from the airport terminal, it will help with your luggage and take you directly to your hotel or any other destination, and vice versa.",
+            "comfort_safety_title": "Maximum comfort and safety during your trip",
+            "comfort_safety_subtitle": "Authorized vehicles, experienced drivers",
+            "economy_class_title": "ECONOMY CLASS",
+            "economy_class_desc": "For a couple or a family with children",
+            "business_class_title": "BUSINESS CLASS",
+            "business_class_desc": "Comfortable for business trips",
+            "groups_title": "FOR GROUPS",
+            "groups_desc": "For groups up to 19 people or with large luggage",
+            "how_it_works_title": "How it works",
+            "step1_title": "Book your airport transfer worldwide",
+            "step1_desc1": "Mytransfers offers private airport transfers bookings with instant confirmation worldwide. We work directly with local drivers and select the best services for our clients. In this way we ensure that your vacation will start in the best possible way.",
+            "step1_desc2": "We constantly review our service to ensure that you will enjoy your ride with Mytransfers in any destination you choose.",
+            "step2_title": "Our easy transfer booking process",
+            "step2_desc": "Choose your origin and destination and in just 3 click you will have your private transfer booked. Forget about long waiting taxi lines at the airport, our driver will be waiting for you with a sign at your arrival.",
+            "step3_title": "Airport, Port or Train Stations",
+            "step3_desc": "With us you can book your private transfer from any airport, port or train station. We monitor the arrival of the means of transport to ensure that your transfer will be carried out on time and with the maximum guarantees of quality and safety.",
+            "popular_destinations_title": "The most popular destinations"
+        },
+        "booking_form": {
+            "search_title": "Are you looking for airport transfers?",
+            "search_subtitle": "You have come to the right place",
+            "oneway": "One-way",
+            "roundtrip": "Round-Trip",
+            "passengers": "Passengers",
+            "adults": "Adults",
+            "children": "Children",
+            "infants": "Infants",
+            "from": "From",
+            "to": "To",
+            "pickup_location": "Pickup location",
+            "dropoff_location": "Dropoff location",
+            "pickup_date": "Pickup date",
+            "return_date": "Return date",
+            "time": "Time",
+            "add_return": "+ Add return",
+            "search": "Search",
+            "apply": "Apply",
+            "see_more_results": "See more results",
+            "loading": "Loading...",
+            "no_results": "No results",
+            "loading_message": "We are searching for the best transfer options for you...",
+            "loading_wait": "Please wait"
+        },
+        "validation_errors": {
+            "from_required": "Please select a pickup location",
+            "to_required": "Please select a dropoff location",
+            "pickup_date_required": "Please select a pickup date",
+            "return_date_required": "Please select a return date",
+            "general_error": "An error occurred. Please try again."
+        }
+    },
+    "es": {
+        "continue": "Continuar",
+        "pay": "Realizar pedido",
+        "loading": "cargando..",
+        "send_by": "Oferta Mytransfers",
+        "free": " Gratis",
+        "mins": "min",
+        "locale_lang": "es",
+        "locale": "es-es",
+        "adult": "Adulto",
+        "adults": "Adultos",
+        "minors": "Niños",
+        "oneway": "Solo ida",
+        "roundtrip": "Ida y vuelta",
+        "msn_error": "Ha ocurrido un error al final del proceso, por favor contacte con atención al cliente o inténtelo de nuevo.",
+        "pickup_date_flight": "Fecha y hora de llegada del vuelo",
+        "pickup_date_train": "Fecha y hora de llegada del tren",
+        "pickup_date_port": "Fecha y hora de desembarque",
+        "pickup_date_address": "Fecha y hora de recogida",
+        "dropoff_date_flight": "Fecha y hora de salida del vuelo",
+        "dropoff_date_train": "Fecha y hora de salida del tren",
+        "dropoff_date_port": "Fecha y hora de salida del puerto",
+        "dropoff_date_address": "Fecha y hora de entrega",
+        "msn_searchbox_date_pickup": "Por favor seleccione su hora de llegada de vuelo. Monitoreamos todos los vuelos y nuestro conductor lo estará esperando",
+        "msn_searchbox_date_dropoff": "Por favor seleccione su hora de salida de vuelo. Puede elegir la hora de recogida de su hotel/dirección en el último paso",
+        "msn_searchbox_date_airport_to_airport": "Por favor seleccione su hora de llegada de vuelo. Monitoreamos todos los vuelos y nuestro conductor lo estará esperando",
+        "msn_searchbox_pickuptime": "Por favor elija su hora de recogida",
+        "msn_searchbox_pickupdate": "Seleccione su fecha de salida",
+        "msn_searchbox_returndate": "Seleccione su fecha de regreso",
+        "daysOfWeek": [
+            "Dom",
+            "Lun",
+            "Mar",
+            "Mié",
+            "Jue",
+            "Vie",
+            "Sáb"
+        ],
+        "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "payment": {
+            "name": "Seleccionar método de pago",
+            "description": "Seleccionar de la lista de métodos de pago",
+            "img": "/img/visa.png"
+        },
+        "payments": [
+            {
+                "name": "Tarjeta de crédito o débito",
+                "img": "/img/visa.png",
+                "description": "Pagar con tarjeta de crédito",
+                "code": "creditcard"
+            }
+        ],
+        "list_includes": [
+            {
+                "name": "Modificaciones gratuitas"
+            },
+            {
+                "name": "Conductor profesional"
+            },
+            {
+                "name": "Confirmación instantánea"
+            },
+            {
+                "name": "Recepción con cartel de bienvenida",
+                "is_meet": true
+            },
+            {
+                "name": "Cancelaciones gratuitas (Hasta 24 horas antes de su llegada)"
+            }
+        ],
+        "list_extras": [
+            {
+                "name": "Puerta a puerta"
+            },
+            {
+                "name": "Asientos infantiles gratuitos"
+            },
+            {
+                "name": "Servicio de recepción"
+            }
+        ],
+        "completed": "Completado",
+        "on_hold": "Cancelado",
+        "cancelled": "Cancelado",
+        "noshowprovider": "Cancelado",
+        "processing": "Cancelado",
+        "confirmed": "Completado",
+        "homepage": {
+            "banner_title": "Book your transfer to the Airport or your private ride with ease. Enjoy our service at best rates available.",
+            "why_different_title": "Discover why we are different",
+            "door_to_door_title": "Door To Door",
+            "door_to_door_desc": "From the Airport directly to your destination",
+            "private_transfers_title": "Private Transfers",
+            "private_transfers_desc": "We offer only private transfers, no shared service",
+            "meet_greet_title": "Meet & Greet",
+            "meet_greet_desc": "Our driver will meet & greet you in the arrivals hall",
+            "customer_support_title": "24/7 Customer Support",
+            "customer_support_desc": "We are here to help! Before, during and after your trip",
+            "reviews_title": "Our Reviews",
+            "reviews_rated": "Rated Excellent Based on 7,420 reviews on Trustpilot",
+            "excellent_service": "Excellent Service",
+            "did_you_know_title": "Did you know",
+            "did_you_know_1": "We know that finding a taxi service in a foreign country can be difficult and stressful. Book ahead and enjoy the best service with all inclusive, no surprises.",
+            "did_you_know_2": "MyTransfers offers reliable transfers to and from major airports around the world, safer, more comfortable, and cheaper than the taxi service. We have an appropriate vehicle for every situation.",
+            "did_you_know_3": "You can choose from several available vehicles, so you can always enjoy maximum comfort. Whether you are traveling alone, in pairs or in groups, we have the perfect vehicle for every occasion.",
+            "did_you_know_4": "The driver will pick you up directly from the airport terminal, it will help with your luggage and take you directly to your hotel or any other destination, and vice versa.",
+            "comfort_safety_title": "Maximum comfort and safety during your trip",
+            "comfort_safety_subtitle": "Authorized vehicles, experienced drivers",
+            "economy_class_title": "ECONOMY CLASS",
+            "economy_class_desc": "For a couple or a family with children",
+            "business_class_title": "BUSINESS CLASS",
+            "business_class_desc": "Comfortable for business trips",
+            "groups_title": "FOR GROUPS",
+            "groups_desc": "For groups up to 19 people or with large luggage",
+            "how_it_works_title": "How it works",
+            "step1_title": "Book your airport transfer worldwide",
+            "step1_desc1": "Mytransfers offers private airport transfers bookings with instant confirmation worldwide. We work directly with local drivers and select the best services for our clients. In this way we ensure that your vacation will start in the best possible way.",
+            "step1_desc2": "We constantly review our service to ensure that you will enjoy your ride with Mytransfers in any destination you choose.",
+            "step2_title": "Our easy transfer booking process",
+            "step2_desc": "Choose your origin and destination and in just 3 click you will have your private transfer booked. Forget about long waiting taxi lines at the airport, our driver will be waiting for you with a sign at your arrival.",
+            "step3_title": "Airport, Port or Train Stations",
+            "step3_desc": "With us you can book your private transfer from any airport, port or train station. We monitor the arrival of the means of transport to ensure that your transfer will be carried out on time and with the maximum guarantees of quality and safety.",
+            "popular_destinations_title": "The most popular destinations"
+        },
+        "booking_form": {
+            "search_title": "Are you looking for airport transfers?",
+            "search_subtitle": "You have come to the right place",
+            "oneway": "One-way",
+            "roundtrip": "Round-Trip",
+            "passengers": "Passengers",
+            "adults": "Adults",
+            "children": "Children",
+            "infants": "Infants",
+            "from": "From",
+            "to": "To",
+            "pickup_location": "Pickup location",
+            "dropoff_location": "Dropoff location",
+            "pickup_date": "Pickup date",
+            "return_date": "Return date",
+            "time": "Time",
+            "add_return": "+ Add return",
+            "search": "Search",
+            "apply": "Apply",
+            "see_more_results": "See more results",
+            "loading": "Loading...",
+            "no_results": "No results",
+            "loading_message": "We are searching for the best transfer options for you...",
+            "loading_wait": "Please wait"
+        },
+        "validation_errors": {
+            "from_required": "Please select a pickup location",
+            "to_required": "Please select a dropoff location",
+            "pickup_date_required": "Please select a pickup date",
+            "return_date_required": "Please select a return date",
+            "general_error": "An error occurred. Please try again."
+        }
+    }
+}

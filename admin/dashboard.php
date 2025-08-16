@@ -118,30 +118,7 @@ ob_start();
     </div>
 </div>
 
-<div class="admin-card">
-    <h3>Checkout tester</h3>
-    <div class="admin-form-row">
-        <input class="admin-input" id="pAddr" placeholder="Pickup address (autocomplete)" />
-        <input class="admin-input" id="dAddr" placeholder="Dropoff address (autocomplete)" />
-    </div>
-    <div class="admin-form-row" style="margin-top:8px">
-        <input class="admin-input" id="pLat" placeholder="Pickup lat" />
-        <input class="admin-input" id="pLng" placeholder="Pickup lng" />
-        <input class="admin-input" id="dLat" placeholder="Dropoff lat" />
-        <input class="admin-input" id="dLng" placeholder="Dropoff lng" />
-    </div>
-    <div class="admin-form-row" style="margin-top:8px">
-        <input class="admin-input" id="passengers" placeholder="Passengers" value="2" />
-        <select class="admin-select" id="vehicle">
-            <option>Sedan</option>
-            <option>Minivan</option>
-        </select>
-        <input class="admin-input" id="email" placeholder="Email (optional)" />
-        <input class="admin-input" id="coupon" placeholder="Coupon code (optional)" />
-        <button class="admin-btn" onclick="testCheckout()">Test</button>
-    </div>
-    <pre class="admin-pre" id="result" style="margin-top:12px; min-height:120px"></pre>
-</div>
+
 
 <?php if ($logTail): ?>
 <div class="admin-card">
@@ -151,9 +128,6 @@ ob_start();
 <?php endif; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<?php if ($googleKey): ?>
-<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo htmlspecialchars($googleKey, ENT_QUOTES); ?>&libraries=places"></script>
-<?php endif; ?>
 <script>
 const daysLabels = <?php echo json_encode(array_keys($days)); ?>;
 const daysData = <?php echo json_encode(array_values($days)); ?>;
@@ -176,56 +150,9 @@ const dropoffData = topEntries(<?php echo json_encode($topDropoff); ?>, 5);
 new Chart(document.getElementById('chartPickup'), { type:'bar', data:{ labels: pickupData.labels, datasets:[{label:'Pickup', data: pickupData.data, backgroundColor:'#0898cf'}] }, options:{ indexAxis:'y', responsive:true, scales:{ x:{beginAtZero:true}} }});
 new Chart(document.getElementById('chartDropoff'), { type:'bar', data:{ labels: dropoffData.labels, datasets:[{label:'Dropoff', data: dropoffData.data, backgroundColor:'#4CAF50'}] }, options:{ indexAxis:'y', responsive:true, scales:{ x:{beginAtZero:true}} }});
 
-async function testCheckout(){
-  const payload = {
-    pickup_date: new Date().toISOString(),
-    return_date: new Date(Date.now()+2*3600*1000).toISOString(),
-    passengers: parseInt(document.getElementById('passengers').value||'2',10),
-    pickup: { name: 'Pickup', lat: parseFloat(document.getElementById('pLat').value), lng: parseFloat(document.getElementById('pLng').value) },
-    dropoff: { name: 'Dropoff', lat: parseFloat(document.getElementById('dLat').value), lng: parseFloat(document.getElementById('dLng').value) },
-    vehicle: { type: document.getElementById('vehicle').value },
-    coupon_code: (document.getElementById('coupon').value||'').trim(),
-    email: (document.getElementById('email').value||'').trim()
-  };
-  try{
-    const res = await fetch('/mytransfers/api/book', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
-    const json = await res.json();
-    document.getElementById('result').textContent = JSON.stringify(json, null, 2);
-  }catch(err){ document.getElementById('result').textContent = String(err); }
-}
 
-// Google Places Autocomplete hookup
-<?php if ($googleKey): ?>
-(function(){
-  if (!window.google || !google.maps || !google.maps.places) return;
-  var pInput = document.getElementById('pAddr');
-  var dInput = document.getElementById('dAddr');
-  if (pInput){
-    var ap = new google.maps.places.Autocomplete(pInput, { types:['geocode'] });
-    ap.addListener('place_changed', function(){
-      var place = ap.getPlace();
-      if (place && place.geometry && place.geometry.location){
-        document.getElementById('pLat').value = place.geometry.location.lat();
-        document.getElementById('pLng').value = place.geometry.location.lng();
-      }
-    });
-  }
-  if (dInput){
-    var ad = new google.maps.places.Autocomplete(dInput, { types:['geocode'] });
-    ad.addListener('place_changed', function(){
-      var place = ad.getPlace();
-      if (place && place.geometry && place.geometry.location){
-        document.getElementById('dLat').value = place.geometry.location.lat();
-        document.getElementById('dLng').value = place.geometry.location.lng();
-      }
-    });
-  }
-})();
-<?php endif; ?>
 </script>
 <?php
 $content = ob_get_clean();
 $layout = file_get_contents(__DIR__.'/_layout.php');
 echo str_replace('<!-- PAGE_CONTENT -->', $content, $layout);
-
-

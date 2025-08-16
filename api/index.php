@@ -675,6 +675,42 @@ switch ($endpoint) {
         ]);
         break;
 
+    case 'language':
+        if ($method === 'POST') {
+            // Set language preference
+            $data = json_decode(file_get_contents('php://input'), true) ?: [];
+            $lang = $data['language'] ?? '';
+            
+            // Validate language
+            $valid_languages = ['en', 'tr', 'de', 'fr', 'es'];
+            if (!in_array($lang, $valid_languages)) {
+                respond(400, ['error' => 'Invalid language']);
+            }
+            
+            // Set cookie
+            $expires = time() + (365 * 24 * 60 * 60); // 1 year
+            setcookie('site_language', $lang, $expires, '/');
+            
+            // Start session if not started
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['site_language'] = $lang;
+            
+            respond(200, ['language' => $lang, 'status' => 'success']);
+        } elseif ($method === 'GET') {
+            // Get current language preference
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            
+            $current_lang = $_COOKIE['site_language'] ?? $_SESSION['site_language'] ?? 'en';
+            respond(200, ['language' => $current_lang]);
+        } else {
+            respond(405, ['error' => 'Method Not Allowed']);
+        }
+        break;
+
     default:
         respond(404, ['error' => 'Unknown endpoint']);
 }

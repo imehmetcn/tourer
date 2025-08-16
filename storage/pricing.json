@@ -1,0 +1,56 @@
+{
+    "transfers": {
+        "economy": {
+            "base_price": 25,
+            "per_km": 0.5,
+            "min_price": 20,
+            "max_price": 200
+        },
+        "standard": {
+            "base_price": 35,
+            "per_km": 0.7,
+            "min_price": 30,
+            "max_price": 300
+        },
+        "premium": {
+            "base_price": 50,
+            "per_km": 1,
+            "min_price": 45,
+            "max_price": 500
+        },
+        "vip": {
+            "base_price": 80,
+            "per_km": 1.5,
+            "min_price": 70,
+            "max_price": 800
+        },
+        "minibus": {
+            "base_price": 65,
+            "per_km": 1.2,
+            "min_price": 60,
+            "max_price": 600
+        },
+        "coach": {
+            "base_price": 150,
+            "per_km": 2,
+            "min_price": 120,
+            "max_price": 1000
+        }
+    },
+    "special_routes": [],
+    "seasonal_prices": {
+        "high_season_multiplier": 1.2,
+        "low_season_multiplier": 0.8,
+        "high_season_months": [
+            "6",
+            "7",
+            "8"
+        ],
+        "low_season_months": [
+            1,
+            2,
+            11,
+            12
+        ]
+    }
+}

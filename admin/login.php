@@ -61,6 +61,11 @@ if (empty($users)) {
 <body class="<?php echo (empty($_COOKIE['adm_theme']) || $_COOKIE['adm_theme']==='dark') ? 'theme-dark' : '';?>">
     <div style="display:flex; align-items:center; justify-content:center; height:100vh;">
         <form class="admin-card" style="width:360px" method="post">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="/mytransfers/assets/mytransfersweb/prod/logo.png" 
+                     alt="MyTransfers Logo" 
+                     style="height: 50px; width: auto;">
+            </div>
             <h3 style="margin:0 0 8px">Admin Login</h3>
             <div class="admin-muted" style="margin-bottom:12px">Sign in to manage content and settings</div>
             <?php if ($error): ?><div style="color:#b00020; margin:8px 0;"><?php echo htmlspecialchars($error, ENT_QUOTES); ?></div><?php endif; ?>

@@ -3,8 +3,38 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+# API rules (preserve original)
 RewriteRule ^api/?$ api/index.php [L,QSA]
 RewriteRule ^api/(.*)$ api/index.php [L,QSA]
+
+# Language-based URL routing
+# Smart redirect for root URL based on user preference
+RewriteRule ^$ language_redirect.php [L]
+
+# Language routes: /en, /tr, /de, /fr, /es
+RewriteRule ^(en|tr|de|fr|es)/?$ index.php?lang=$1 [L,QSA]
+
+# Language routes with paths (but exclude assets, api, admin, public, includes, storage)
+RewriteCond %{REQUEST_URI} !^/(en|tr|de|fr|es)/(assets|api|admin|public|includes|storage)/
+RewriteRule ^(en|tr|de|fr|es)/(.*)$ index.php?lang=$1&path=$2 [L,QSA]
+
+# Currency routing
+RewriteRule ^currency/([A-Z]{3})/?$ currency.php?code=$1 [L,QSA]
+RewriteRule ^mytransfers/currency/([A-Z]{3})/?$ currency.php?code=$1 [L,QSA]
+
+# Fallback: redirect only main pages without language prefix to handler
+RewriteCond %{REQUEST_URI} !^/(en|tr|de|fr|es|api|admin|assets|public|includes|storage)/
+RewriteCond %{REQUEST_URI} !^/language_redirect.php
+RewriteCond %{REQUEST_URI} !^/test.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/.]+)/?$ language_redirect.php [L]
+
+# Admin panel (preserve original routing)
+RewriteRule ^admin/(.*)$ admin/$1 [L]
+
+# Public pages with language prefix
+RewriteRule ^(en|tr|de|fr|es)/(payment|voucher|my-bookings|app)\.html$ public/$2.html?lang=$1 [L,QSA]
 
 <IfModule mod_headers.c>
     # CORS (dev): limit to localhost. Adjust in prod as needed.
@@ -16,6 +46,42 @@ RewriteRule ^api/(.*)$ api/index.php [L,QSA]
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "no-referrer-when-downgrade"
 </IfModule>
+
+# MIME Types for assets
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType image/svg+xml .svg
+    AddType image/png .png
+    AddType image/jpeg .jpg .jpeg
+    AddType image/gif .gif
+    AddType image/webp .webp
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+</IfModule>
+
+# Force correct MIME types for assets
+<FilesMatch "\.css$">
+    Header set Content-Type "text/css"
+</FilesMatch>
+
+<FilesMatch "\.js$">
+    Header set Content-Type "application/javascript"
+</FilesMatch>
+
+<FilesMatch "\.(png|jpg|jpeg|gif|webp)$">
+    Header set Content-Type "image/jpeg"
+</FilesMatch>
+
+<FilesMatch "\.svg$">
+    Header set Content-Type "image/svg+xml"
+</FilesMatch>
+
+<FilesMatch "\.(woff|woff2)$">
+    Header set Content-Type "font/woff"
+</FilesMatch>
 
 
 SetEnv DB_HOST 127.0.0.1

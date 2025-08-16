@@ -28,8 +28,8 @@ header('X-Frame-Options: DENY');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: no-referrer-when-downgrade');
 header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
-// CSP: allow self + minimal CDNs used in admin (boxicons, chart.js)
-$csp = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data:; font-src 'self' https://unpkg.com data:; connect-src 'self'; frame-ancestors 'none'";
+// CSP: allow self + minimal CDNs used in admin (boxicons, chart.js, google fonts)
+$csp = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://unpkg.com https://fonts.gstatic.com data:; connect-src 'self'; frame-ancestors 'none'";
 header('Content-Security-Policy: ' . $csp);
 
 function read_json(string $path, $default) {
