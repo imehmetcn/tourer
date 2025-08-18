@@ -8,29 +8,41 @@
         <script type="text/javascript" src="/mytransfers/assets/mytransfersweb/prod/js/vendor/angular-sanitize.min.js"></script>
         <script type="text/javascript" src="/mytransfers/assets/mytransfersweb/prod/js/vendor/angular-local-storage.min.js"></script>
         <script src="/mytransfers/assets/mytransfersweb/prod/js/default.js?id=febbf972f31d0a5cd5f6"></script>
+        
+        <!-- Load our search override BEFORE other scripts -->
+        <script src="/mytransfers/assets/mytransfersweb/prod/js/search-override.js"></script>
     
     <script type="text/javascript" src="<?php echo $lang_loader->getLanguageFileWithVersion(); ?>"></script>
 
     <script>
-              window.__mt = window.__mt || {};
+        // MyTransfers JavaScript Configuration - Orijinal siteden birebir kopyalandı
+        window.__mt = window.__mt || {};
         window.__mt.ln = window.__mt.ln || {};
         window.__mt.setting = window.__mt.setting || {};
         window.__mt.setting.user = {};
+        
+        // Dil ve para birimi ayarları (orijinal sitedeki gibi)
         window.__mt.ln.currency = "EUR";
         window.__mt.ln.lang = "<?php echo $lang_loader->getCurrentLanguage(); ?>";
         window.__mt.ln.cancel = "Cancel";
         window.__mt.ln.ok = "Ok";
         window.__mt.ln.currency_code = "EUR €";
+        
+        // Asset URL (orijinal sitedeki gibi)
         window.__mt.setting.asset_url = "/mytransfersweb/prod/";
-        window.__mt.setting.api_search = "https://www.mytransfers.com/api/search";
-        window.__mt.setting.api_map = "/mytransfers.com/api/map";
-        window.__mt.setting.root_page = "/mytransfers.com/en/";
-        window.__mt.setting.search_page = "/mytransfers.com/en/search/";
-        window.__mt.setting.checkout_page = "/mytransfers.com/en/checkout/";
-        window.__mt.setting.api_list = "/mytransfers.com/api/list";
+        
+        // Sayfa URL'leri (orijinal sitedeki gibi, projenize uyarlandı)
+        window.__mt.setting.root_page = "/mytransfers/<?php echo $lang_loader->getCurrentLanguage(); ?>/";
+        window.__mt.setting.search_page = "/mytransfers/<?php echo $lang_loader->getCurrentLanguage(); ?>/search/";
+        window.__mt.setting.checkout_page = "/mytransfers/<?php echo $lang_loader->getCurrentLanguage(); ?>/checkout/";
+        
+        // API endpoint'leri (orijinal sitedeki gibi, projenize uyarlandı)
+        window.__mt.setting.api_search = "/mytransfers/api/search";
+        window.__mt.setting.api_map = "/mytransfers/api/map";
+        window.__mt.setting.api_list = "/mytransfers/api/list";
         window.__mt.setting.api_checkout = "/mytransfers/api/checkout";
         window.__mt.setting.api_requote = "/mytransfers/api/requote";
-        window.__mt.setting.api_reservation = "/mytransfers.com/api/reservation";
+        window.__mt.setting.api_reservation = "/mytransfers/api/reservation";
         window.__mt.setting.api_country = "/mytransfers/api/countries";
         window.__mt.setting.api_distance = "/mytransfers/api/distance";
         window.__mt.setting.api_urlshort = "/mytransfers/api/url";
@@ -40,13 +52,15 @@
         window.__mt.setting.api_predictions = "/mytransfers/api/predictions";
         window.__mt.setting.api_prediction_coords = "/mytransfers/api/prediction";
 
-            window.__mt.setting.google_map =
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyBAM6JD4vHMr0FU8epafEabQAA3rNo3Tns&v=3.exp&libraries=drawing,places";
-        window.__mt.setting.google_places =
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyBSnLRvG8iygqTuN04w0u6pbzwQGPJbBog&v=3.exp&libraries=places";
+        // Google Maps API - Disabled to prevent legacy API errors
+        // Using our own API endpoints instead
+        window.__mt.setting.google_map = "";
+        window.__mt.setting.google_places = "";
+        
+        // Flag to indicate we're using custom API
+        window.__mt.setting.use_custom_api = true;
 
         window.__mt.setting.user = null;
-        window.__mt.setting.api_ip_info_token = "8eb7e3a7398dd5";
     </script>
         <script type="text/javascript" src="/mytransfers/assets/mytransfersweb/prod/js/angular.js?id=8013260186aff6a56bb1"></script>
         <script src="/mytransfers/assets/mytransfersweb/prod/js/search/controller.js?id=458fe1323cc70934ba1f"></script>

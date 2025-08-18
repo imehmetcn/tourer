@@ -1,4 +1,6 @@
-# TOURER Truzim (PHP 7.4 + AngularJS assets)
+# MyTransfers Clone (PHP 7.4 + AngularJS assets)
+
+Modern admin paneli ve zone-matrix fiyatlandırma ile MyTransfers.com rezervasyon mantığını taklit eden, lokal (XAMPP) üzerinde çalışacak şekilde tasarlanmış bir proje.
 
 ## Özellikler
 
@@ -138,3 +140,6 @@ Rezervasyon kaydında `pricing_method`, `from_zone`, `to_zone` alanları dolduru
 - [ ] Caching (APCu/file) – countries/destinations/predictions
 - [ ] GDPR: IP anonymization, cookie consent
 
+## Lisans
+
+Bu proje, orijinal site mantığını yeniden üreten bir çalışma amaçlıdır; üretim kullanımına alınmadan önce telif ve yasal değerlendirme yapılması tavsiye edilir.

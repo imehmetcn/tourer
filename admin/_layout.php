@@ -91,6 +91,12 @@ if (is_file($cfgFile)) { $cfg = json_decode(file_get_contents($cfgFile), true); 
                 <li><a href="/mytransfers/admin/payment.php"><i class='bx bx-credit-card'></i> <span class="label">Ödeme Ayarları</span></a></li>
                 <li><a href="/mytransfers/admin/email.php"><i class='bx bx-envelope'></i> <span class="label">E-posta Ayarları</span></a></li>
                 <li><a href="/mytransfers/admin/import.php"><i class='bx bx-upload'></i> <span class="label">İçe/Dışa Aktar</span></a></li>
+                
+                <!-- API Yönetimi -->
+                <li class="menu-category">
+                    <span class="category-title">API Yönetimi</span>
+                </li>
+                <li><a href="/mytransfers/admin/api_test.php"><i class='bx bx-api'></i> <span class="label">API Test</span></a></li>
             </ul>
         </aside>
         <main class="admin-content">

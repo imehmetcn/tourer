@@ -235,22 +235,7 @@ usort($vehicles, function($a, $b) {
 
 ob_start();
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo $current_lang; ?>">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes'>
-    <meta name="theme-color" content="#09AFEE">
-    <title>Transfer Search - MyTransfers</title>
-    <meta name="robots" content="noindex, nofollow">
-    
-    <link rel="stylesheet" href="/mytransfers/assets/mytransfersweb/prod/css/app.css">
-    <link rel="stylesheet" href="/mytransfers/assets/mytransfersweb/prod/css/default.css">
-    <link rel="stylesheet" href="/mytransfers/assets/mytransfersweb/prod/css/home.css">
-    <link rel="stylesheet" href="/mytransfers/assets/mytransfersweb/prod/css/fonts-text.css">
-    
-    <link rel="icon" href="/mytransfers/assets/mytransfersweb/prod/img/mytransfers-icon.png">
+<!-- PAGE_CONTENT -->
     
     <style>
         body {
@@ -268,7 +253,7 @@ ob_start();
             margin: 0 auto;
             padding: 20px;
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 350px 1fr;
             gap: 30px;
         }
         
@@ -344,6 +329,7 @@ ob_start();
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s ease;
+            margin-bottom: 20px;
         }
         
         .change-route-btn:hover {
@@ -363,7 +349,7 @@ ob_start();
              padding: 30px;
              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
              display: grid;
-             grid-template-columns: 1fr auto;
+             grid-template-columns: 1fr 250px;
              gap: 30px;
              align-items: start;
          }
@@ -744,7 +730,7 @@ ob_start();
         
                  @media (max-width: 1200px) {
              .search-container {
-                 grid-template-columns: 300px 1fr;
+                 grid-template-columns: 350px 1fr;
                  gap: 20px;
              }
          }
@@ -773,14 +759,14 @@ ob_start();
                 flex-wrap: wrap;
             }
             
-                         .vehicle-card {
-                 grid-template-columns: 1fr;
-                 gap: 20px;
-             }
-             
-             .pricing-section {
-                 max-width: none;
-             }
+            .vehicle-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .pricing-section {
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -813,6 +799,99 @@ ob_start();
                         
                         <div class="trip-info-item">
                             <div class="trip-info-icon"></div>
+                            <div class="trip-info-text">
+                                <strong>From:</strong> <?php echo htmlspecialchars($from ?: 'Antalya Airport'); ?><br>
+                                <strong>To:</strong> <?php echo htmlspecialchars($to ?: 'Antalya City Center'); ?>
+                            </div>
+                        </div>
+                        
+                        <div class="trip-info-item">
+                            <div class="trip-info-icon"></div>
+                            <div class="trip-info-text">
+                                <strong>Date:</strong> <?php echo htmlspecialchars($arrival_date ?: date('Y-m-d')); ?><br>
+                                <strong>Passengers:</strong> <?php echo $total_passengers; ?> (<?php echo $adults; ?> adults, <?php echo $children; ?> children, <?php echo $infants; ?> infants)
+                            </div>
+                        </div>
+                        
+                        <div class="trip-info-item">
+                            <div class="trip-info-icon"></div>
+                            <div class="trip-info-text">
+                                <strong>Distance:</strong> <?php echo $estimatedDistance; ?> km<br>
+                                <strong>Transfer Type:</strong> <?php echo ucfirst($transfer_type); ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="change-route-btn" onclick="window.location.href='/'">
+                        <i class="fas fa-edit"></i> Change Route
+                    </button>
+                </div>
+                
+                <!-- Filters Sidebar -->
+                <div class="filters-sidebar">
+                    <div class="filter-section">
+                        <h5>Price Range</h5>
+                        <div class="price-slider">
+                            <div class="slider-labels">
+                                <span>€0</span>
+                                <span id="priceValue">€<?php echo max(array_column($vehicles, 'price')); ?></span>
+                            </div>
+                            <input type="range" class="slider-input" min="0" max="<?php echo max(array_column($vehicles, 'price')); ?>" value="<?php echo max(array_column($vehicles, 'price')); ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h5>Passengers</h5>
+                        <div class="price-slider">
+                            <div class="slider-labels">
+                                <span>1</span>
+                                <span id="passengersValue"><?php echo $total_passengers; ?></span>
+                            </div>
+                            <input type="range" class="slider-input" min="1" max="25" value="<?php echo $total_passengers; ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h5>Suitcases</h5>
+                        <div class="price-slider">
+                            <div class="slider-labels">
+                                <span>1</span>
+                                <span id="suitcasesValue"><?php echo $total_passengers; ?></span>
+                            </div>
+                            <input type="range" class="slider-input" min="1" max="25" value="<?php echo $total_passengers; ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h5>Extra Services</h5>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="meet_greet">
+                            <label for="meet_greet">Meet & Greet</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="door_to_door">
+                            <label for="door_to_door">Door to Door</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="free_child_seats">
+                            <label for="free_child_seats">Free Child Seats</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="booster_seat">
+                            <label for="booster_seat">Booster Seat</label>
+                        </div>
+                        <div class="filter-checkbox">
+                            <input type="checkbox" id="child_seat">
+                            <label for="child_seat">Child Seat</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Section -->
+                    <div class="map-section" onclick="showMap()">
+                        <div class="map-icon">🗺️</div>
+                        <div class="map-text">View Route on Map</div>
+                    </div>
+                </div>
                             <div class="trip-info-text">Antalya Airport (AYT)</div>
                         </div>
                         
@@ -837,81 +916,52 @@ ob_start();
                         </div>
                     </div>
                     
-                                         <button class="change-route-btn">Change route</button>
+                     
                  </div>
                  
-                 <!-- Included in the price section -->
-                 <div class="route-details-card" style="margin-top: 20px;">
-                     <h4 style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px;">Included in the price</h4>
-                     <ul class="feature-list">
-                         <li class="feature-item">
-                             <div class="feature-check"></div>
-                             Free amendments
-                         </li>
-                         <li class="feature-item">
-                             <div class="feature-check"></div>
-                             Professional driver
-                         </li>
-                         <li class="feature-item">
-                             <div class="feature-check"></div>
-                             Instant confirmation
-                         </li>
-                         <li class="feature-item">
-                             <div class="feature-check"></div>
-                             Meet & Greet with welcome sign
-                         </li>
-                         <li class="feature-item">
-                             <div class="feature-check"></div>
-                             Free cancellations (Up to 24 hours before your arrival)
-                         </li>
-                     </ul>
-                 </div>
+
                 
                 <!-- Filters Sidebar -->
                 <div class="filters-sidebar">
                     <!-- Map Section -->
-                    <div class="map-section">
+                    <div class="map-section" onclick="showMap()">
                         <div class="map-icon">🗺️</div>
-                        <div class="map-text">Map</div>
+                        <div class="map-text">View Route on Map</div>
                     </div>
                     
                     <!-- Price Filter -->
                     <div class="filter-section">
-                        <h5>Price:</h5>
+                        <h5>Price Range</h5>
                         <div class="price-slider">
                             <div class="slider-labels">
-                                <span>Min</span>
-                                <span>Max</span>
+                                <span>€0</span>
+                                <span id="priceValue">€<?php echo max(array_column($vehicles, 'price')); ?></span>
                             </div>
-                            <input type="range" class="slider-input" min="0" max="200" value="62">
-                                                         <div class="slider-labels">
-                                 <span>€<?php echo number_format(min(array_column($vehicles, 'price')), 2); ?></span>
-                                 <span>€<?php echo number_format(max(array_column($vehicles, 'price')), 2); ?></span>
-                             </div>
+                            <input type="range" class="slider-input" min="0" max="<?php echo max(array_column($vehicles, 'price')); ?>" value="<?php echo max(array_column($vehicles, 'price')); ?>">
                         </div>
                     </div>
                     
                     <!-- Passengers Filter -->
                     <div class="filter-section">
-                        <h5>Passengers:</h5>
+                        <h5>Passengers</h5>
                         <div class="price-slider">
                             <div class="slider-labels">
-                                <span>Min (1)</span>
-                                <span>Max (16)</span>
+                                <span>1</span>
+                                <span id="passengersValue"><?php echo $total_passengers; ?></span>
                             </div>
-                            <input type="range" class="slider-input" min="1" max="16" value="2">
+                            <input type="range" class="slider-input" min="1" max="25" value="<?php echo $total_passengers; ?>">
                         </div>
                     </div>
                     
                     <!-- Suitcases Filter -->
                     <div class="filter-section">
-                        <h5>Suitcases capacity:</h5>
+                        <h5>Suitcases</h5>
                         <div class="price-slider">
                             <div class="slider-labels">
-                                <span>Min (2)</span>
-                                <span>Max (16)</span>
+                                <span>1</span>
+                                <span id="suitcasesValue"><?php echo $total_passengers; ?></span>
                             </div>
-                            <input type="range" class="slider-input" min="2" max="16" value="12">
+                            <input type="range" class="slider-input" min="1" max="25" value="<?php echo $total_passengers; ?>">
                         </div>
                     </div>
                     
@@ -943,9 +993,9 @@ ob_start();
             </div>
             
                          <!-- Right Column - Vehicle Cards -->
-             <div class="vehicle-cards">
+             <div class="vehicle-cards" id="vehicleCards">
                  <?php foreach ($vehicles as $index => $vehicle): ?>
-                 <div class="vehicle-card">
+                 <div class="vehicle-card" data-price="<?php echo $vehicle['price']; ?>" data-capacity="<?php echo $vehicle['capacity']; ?>" data-luggage="<?php echo $vehicle['luggage']; ?>" data-meetandgreet="<?php echo in_array('Meet & Greet', $vehicle['features']) ? '1' : '0'; ?>" data-doortodoor="<?php echo in_array('Door-to-Door', $vehicle['features']) ? '1' : '0'; ?>">
                      <div class="vehicle-content">
                          <div class="service-header">
                              <div class="vehicle-image" style="background: <?php echo $index % 2 == 0 ? '#000' : '#6c757d'; ?>;">
@@ -1016,10 +1066,7 @@ ob_start();
                          <button class="book-now-btn" onclick="bookVehicle('<?php echo $vehicle['class']; ?>', <?php echo $vehicle['price']; ?>)" <?php echo !$vehicle['available'] ? 'disabled' : ''; ?>>
                              <?php echo $vehicle['available'] ? 'Book now' : 'Not available'; ?>
                          </button>
-                         <div class="contact-options">
-                             <div class="contact-icon">📧</div>
-                             <div class="contact-icon">📱</div>
-                         </div>
+
                      </div>
                  </div>
                  <?php endforeach; ?>
@@ -1040,12 +1087,12 @@ ob_start();
              passengersMax: <?php echo max(array_column($vehicles, 'capacity')); ?>,
              suitcasesMin: 2,
              suitcasesMax: <?php echo max(array_column($vehicles, 'luggage')); ?>,
-             meetGreet: true,
-             doorToDoor: true,
-             freeChildSeats: true,
+             meetGreet: false,
+             doorToDoor: false,
+             freeChildSeats: false,
              boosterSeat: false,
              childSeat: false
-         };
+          };
          
          function toggleMoreInfo(vehicleType) {
              const toggle = document.querySelector(`[onclick="toggleMoreInfo('${vehicleType}')"]`);
@@ -1089,8 +1136,9 @@ ob_start();
          
          // Filtre fonksiyonları
          function updatePriceFilter() {
-             const priceSlider = document.querySelector('.slider-input');
-             const currentPrice = parseFloat(priceSlider.value);
+             const priceSlider = document.querySelectorAll('.slider-input')[0];
+             const currentPrice = parseInt(priceSlider.value);
+             document.getElementById('priceValue').textContent = '€' + currentPrice;
              
              // Fiyat filtresini güncelle
              currentFilters.priceMax = currentPrice;
@@ -1100,6 +1148,7 @@ ob_start();
          function updatePassengersFilter() {
              const passengersSlider = document.querySelectorAll('.slider-input')[1];
              const currentPassengers = parseInt(passengersSlider.value);
+             document.getElementById('passengersValue').textContent = currentPassengers;
              
              currentFilters.passengersMax = currentPassengers;
              applyFilters();
@@ -1108,6 +1157,7 @@ ob_start();
          function updateSuitcasesFilter() {
              const suitcasesSlider = document.querySelectorAll('.slider-input')[2];
              const currentSuitcases = parseInt(suitcasesSlider.value);
+             document.getElementById('suitcasesValue').textContent = currentSuitcases;
              
              currentFilters.suitcasesMax = currentSuitcases;
              applyFilters();
@@ -1125,41 +1175,165 @@ ob_start();
          
          function applyFilters() {
              const vehicleCards = document.querySelectorAll('.vehicle-card');
+             let visibleCount = 0;
              
-             vehicleCards.forEach((card, index) => {
-                 const vehicle = vehicles[index];
+             vehicleCards.forEach((card) => {
+                 const price = parseInt(card.dataset.price);
+                 const capacity = parseInt(card.dataset.capacity);
+                 const luggage = parseInt(card.dataset.luggage);
+                 const meetandgreet = card.dataset.meetandgreet === '1';
+                 const doortodoor = card.dataset.doortodoor === '1';
+                 
                  let show = true;
                  
                  // Fiyat filtresi
-                 if (vehicle.price > currentFilters.priceMax) {
+                 if (price > currentFilters.priceMax) {
                      show = false;
                  }
                  
                  // Yolcu kapasitesi filtresi
-                 if (vehicle.capacity < currentFilters.passengersMax) {
+                 if (capacity < currentFilters.passengersMax) {
                      show = false;
                  }
                  
                  // Bavul kapasitesi filtresi
-                 if (vehicle.luggage < currentFilters.suitcasesMax) {
+                 if (luggage < currentFilters.suitcasesMax) {
                      show = false;
                  }
                  
                  // Extra items filtreleri
-                 if (currentFilters.meetGreet && !vehicle.meetandgreet) {
+                 if (currentFilters.meetGreet && !meetandgreet) {
+                     show = false;
+                 }
+                 
+                 if (currentFilters.doorToDoor && !doortodoor) {
                      show = false;
                  }
                  
                  if (show) {
                      card.style.display = 'grid';
+                     visibleCount++;
                  } else {
                      card.style.display = 'none';
                  }
              });
              
              // Sonuç sayısını güncelle
-             const visibleCards = document.querySelectorAll('.vehicle-card[style*="grid"]').length;
-             console.log(`${visibleCards} araç bulundu`);
+             updateResultsCount(visibleCount);
+         }
+         
+         function updateResultsCount(count) {
+             // Sonuç sayısını gösteren bir element varsa güncelle
+             const resultsElement = document.getElementById('resultsCount');
+             if (resultsElement) {
+                 resultsElement.textContent = `${count} vehicles found`;
+             }
+             
+             // Eğer hiç sonuç yoksa mesaj göster
+             if (count === 0) {
+                 showNoResultsMessage();
+             } else {
+                 hideNoResultsMessage();
+             }
+         }
+         
+         function showNoResultsMessage() {
+             let noResultsDiv = document.getElementById('noResultsMessage');
+             if (!noResultsDiv) {
+                 noResultsDiv = document.createElement('div');
+                 noResultsDiv.id = 'noResultsMessage';
+                 noResultsDiv.className = 'no-results-message';
+                 noResultsDiv.innerHTML = `
+                     <div style="text-align: center; padding: 40px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                         <h3>No vehicles found</h3>
+                         <p>Try adjusting your filters or search criteria.</p>
+                         <button onclick="resetFilters()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                             Reset Filters
+                         </button>
+                     </div>
+                 `;
+                 document.getElementById('vehicleCards').appendChild(noResultsDiv);
+             }
+         }
+         
+         function hideNoResultsMessage() {
+             const noResultsDiv = document.getElementById('noResultsMessage');
+             if (noResultsDiv) {
+                 noResultsDiv.remove();
+             }
+         }
+         
+         function resetFilters() {
+             // Tüm filtreleri sıfırla
+             const sliders = document.querySelectorAll('.slider-input');
+             sliders[0].value = currentFilters.priceMax;
+             sliders[1].value = currentFilters.passengersMax;
+             sliders[2].value = currentFilters.suitcasesMax;
+             
+             const checkboxes = document.querySelectorAll('.filter-checkbox input[type="checkbox"]');
+             checkboxes.forEach(checkbox => {
+                 checkbox.checked = false;
+             });
+             
+             // Filtreleri güncelle
+             updatePriceFilter();
+             updatePassengersFilter();
+             updateSuitcasesFilter();
+             updateExtraItems();
+         }
+         
+         // Harita fonksiyonu
+         function showMap() {
+             const from = '<?php echo htmlspecialchars($from ?: "Antalya Airport"); ?>';
+             const to = '<?php echo htmlspecialchars($to ?: "Antalya City Center"); ?>';
+             const url = `https://www.google.com/maps/dir/${encodeURIComponent(from)}/${encodeURIComponent(to)}`;
+             window.open(url, '_blank');
+         }
+         
+         // Rezervasyon fonksiyonu
+         function bookVehicle(vehicleClass, price) {
+             const from = '<?php echo htmlspecialchars($from); ?>';
+             const to = '<?php echo htmlspecialchars($to); ?>';
+             const adults = <?php echo $adults; ?>;
+             const children = <?php echo $children; ?>;
+             const infants = <?php echo $infants; ?>;
+             const date = '<?php echo htmlspecialchars($arrival_date); ?>';
+             
+             // Rezervasyon sayfasına yönlendir
+             const bookingUrl = `/mytransfers/public/booking.html?vehicle=${vehicleClass}&price=${price}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&adults=${adults}&children=${children}&infants=${infants}&date=${encodeURIComponent(date)}`;
+             window.location.href = bookingUrl;
+         }
+         
+         // İletişim fonksiyonları
+         function contactWhatsApp() {
+             const message = `Hi, I'm interested in booking a transfer from <?php echo htmlspecialchars($from); ?> to <?php echo htmlspecialchars($to); ?> on <?php echo htmlspecialchars($arrival_date); ?>. Can you help me?`;
+             const whatsappUrl = `https://wa.me/905555555555?text=${encodeURIComponent(message)}`;
+             window.open(whatsappUrl, '_blank');
+         }
+         
+         function contactEmail() {
+             const subject = 'Transfer Booking Inquiry';
+             const body = `Hello,\n\nI would like to book a transfer with the following details:\n\nFrom: <?php echo htmlspecialchars($from); ?>\nTo: <?php echo htmlspecialchars($to); ?>\nDate: <?php echo htmlspecialchars($arrival_date); ?>\nPassengers: <?php echo $total_passengers; ?> (<?php echo $adults; ?> adults, <?php echo $children; ?> children, <?php echo $infants; ?> infants)\n\nPlease provide me with available options and pricing.\n\nThank you!`;
+             const emailUrl = `mailto:info@mytransfers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+             window.location.href = emailUrl;
+         }
+         
+         function contactPhone() {
+             window.location.href = 'tel:+905555555555';
+         }
+         
+         // More info toggle fonksiyonu
+         function toggleMoreInfo(vehicleClass) {
+             const content = document.getElementById('moreInfo' + vehicleClass.charAt(0).toUpperCase() + vehicleClass.slice(1));
+             const toggle = event.target;
+             
+             if (content.style.display === 'none' || content.style.display === '') {
+                 content.style.display = 'block';
+                 toggle.classList.add('expanded');
+             } else {
+                 content.style.display = 'none';
+                 toggle.classList.remove('expanded');
+             }
          }
          
          // Event listeners
@@ -1175,19 +1349,15 @@ ob_start();
              checkboxes.forEach(checkbox => {
                  checkbox.addEventListener('change', updateExtraItems);
              });
+             
+             // İlk yüklemede filtreleri uygula
+             applyFilters();
          });
      </script>
     
-    <!-- Footer -->
-    <?php include 'includes/footer.php'; ?>
-    
-    <!-- Scripts -->
-    <?php include 'includes/scripts.php'; ?>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
 <?php
-ob_end_flush();
+$content = ob_get_clean();
+$layout = file_get_contents(__DIR__.'/includes/search_layout.php');
+echo str_replace('<!-- PAGE_CONTENT -->', $content, $layout);
 ?>

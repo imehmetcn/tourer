@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Debug - MyTransfers</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+        .result { background: #f5f5f5; padding: 10px; margin-top: 10px; white-space: pre-wrap; }
+        .success { color: green; }
+        .error { color: red; }
+        input[type="text"] { width: 300px; padding: 8px; margin: 5px; }
+        button { padding: 8px 15px; margin: 5px; }
+        .search-results { max-height: 200px; overflow-y: auto; border: 1px solid #ccc; margin-top: 10px; }
+        .search-item { padding: 8px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .search-item:hover { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Search Debug - MyTransfers</h1>
+    
+    <div class="test-section">
+        <h3>1. Configuration Check</h3>
+        <button onclick="checkConfig()">Check Config</button>
+        <div id="config-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. API Search Test</h3>
+        <input type="text" id="search-query" placeholder="Type location..." value="Madrid">
+        <button onclick="testApiSearch()">Test API Search</button>
+        <div id="api-search-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. API Predictions Test</h3>
+        <input type="text" id="predictions-query" placeholder="Type location..." value="Barcelona">
+        <button onclick="testApiPredictions()">Test API Predictions</button>
+        <div id="api-predictions-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>4. Live Search Simulation</h3>
+        <input type="text" id="live-search" placeholder="Type to search..." oninput="liveSearch(this.value)">
+        <div id="live-search-results" class="search-results"></div>
+        <div id="live-search-debug" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>5. Place Details Test</h3>
+        <input type="text" id="place-id" placeholder="Enter place_id..." value="">
+        <button onclick="testPlaceDetails()">Get Place Details</button>
+        <div id="place-details-result" class="result"></div>
+    </div>
+
+    <script>
+        function checkConfig() {
+            const result = document.getElementById('config-result');
+            let output = 'MyTransfers Configuration:\n';
+            
+            if (window.__mt) {
+                output += '✓ window.__mt exists\n';
+                output += `Language: ${window.__mt.ln?.lang || 'not set'}\n`;
+                output += `Currency: ${window.__mt.ln?.currency || 'not set'}\n`;
+                
+                if (window.__mt.setting) {
+                    output += '\nAPI Endpoints:\n';
+                    output += `- Search: ${window.__mt.setting.api_search || 'not set'}\n`;
+                    output += `- Predictions: ${window.__mt.setting.api_predictions || 'not set'}\n`;
+                    output += `- Prediction Coords: ${window.__mt.setting.api_prediction_coords || 'not set'}\n`;
+                    output += `- Google Maps: ${window.__mt.setting.google_map ? 'configured' : 'not set'}\n`;
+                    output += `- Google Places: ${window.__mt.setting.google_places ? 'configured' : 'not set'}\n`;
+                }
+            } else {
+                output += '✗ window.__mt not found\n';
+                output += 'Make sure you are accessing this page from the main site with proper includes.';
+            }
+            
+            result.textContent = output;
+        }
+
+        async function testApiSearch() {
+            const query = document.getElementById('search-query').value;
+            const result = document.getElementById('api-search-result');
+            
+            if (!window.__mt?.setting?.api_search) {
+                result.textContent = 'Error: API search endpoint not configured';
+                return;
+            }
+            
+            try {
+                const url = `${window.__mt.setting.api_search}?query=${encodeURIComponent(query)}`;
+                result.textContent = `Calling: ${url}\n\nLoading...`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                result.textContent = `Status: ${response.status}\nURL: ${url}\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function testApiPredictions() {
+            const query = document.getElementById('predictions-query').value;
+            const result = document.getElementById('api-predictions-result');
+            
+            if (!window.__mt?.setting?.api_predictions) {
+                result.textContent = 'Error: API predictions endpoint not configured';
+                return;
+            }
+            
+            try {
+                const url = `${window.__mt.setting.api_predictions}?q=${encodeURIComponent(query)}`;
+                result.textContent = `Calling: ${url}\n\nLoading...`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                result.textContent = `Status: ${response.status}\nURL: ${url}\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        let searchTimeout;
+        async function liveSearch(query) {
+            const resultsDiv = document.getElementById('live-search-results');
+            const debugDiv = document.getElementById('live-search-debug');
+            
+            if (!query.trim()) {
+                resultsDiv.innerHTML = '';
+                debugDiv.textContent = '';
+                return;
+            }
+            
+            // Clear previous timeout
+            clearTimeout(searchTimeout);
+            
+            // Debounce search
+            searchTimeout = setTimeout(async () => {
+                try {
+                    debugDiv.textContent = 'Searching...';
+                    
+                    // Test both search and predictions endpoints
+                    const searchUrl = `${window.__mt.setting.api_search}?query=${encodeURIComponent(query)}`;
+                    const predictionsUrl = `${window.__mt.setting.api_predictions}?q=${encodeURIComponent(query)}`;
+                    
+                    const [searchResponse, predictionsResponse] = await Promise.all([
+                        fetch(searchUrl).catch(e => ({ error: e.message })),
+                        fetch(predictionsUrl).catch(e => ({ error: e.message }))
+                    ]);
+                    
+                    let results = [];
+                    let debugInfo = '';
+                    
+                    // Process search results
+                    if (searchResponse.ok) {
+                        const searchData = await searchResponse.json();
+                        if (searchData.response?.predictions) {
+                            results = results.concat(searchData.response.predictions.map(p => ({
+                                ...p,
+                                source: 'search'
+                            })));
+                        }
+                        debugInfo += `Search API: ${searchResponse.status} OK\n`;
+                    } else {
+                        debugInfo += `Search API: ${searchResponse.status || 'Error'}\n`;
+                    }
+                    
+                    // Process predictions results
+                    if (predictionsResponse.ok) {
+                        const predictionsData = await predictionsResponse.json();
+                        if (Array.isArray(predictionsData)) {
+                            results = results.concat(predictionsData.map(p => ({
+                                ...p,
+                                source: 'predictions'
+                            })));
+                        }
+                        debugInfo += `Predictions API: ${predictionsResponse.status} OK\n`;
+                    } else {
+                        debugInfo += `Predictions API: ${predictionsResponse.status || 'Error'}\n`;
+                    }
+                    
+                    // Display results
+                    if (results.length > 0) {
+                        resultsDiv.innerHTML = results.map(result => 
+                            `<div class="search-item" onclick="selectPlace('${result.place_id || ''}', '${result.description || result.main_text || ''}')">
+                                <strong>${result.description || result.main_text || 'Unknown'}</strong>
+                                <small style="color: #666;"> (${result.source})</small>
+                            </div>`
+                        ).join('');
+                        debugInfo += `\nFound ${results.length} results`;
+                    } else {
+                        resultsDiv.innerHTML = '<div class="search-item">No results found</div>';
+                        debugInfo += '\nNo results found';
+                    }
+                    
+                    debugDiv.textContent = debugInfo;
+                    
+                } catch (error) {
+                    debugDiv.textContent = `Error: ${error.message}`;
+                    resultsDiv.innerHTML = '<div class="search-item">Error occurred</div>';
+                }
+            }, 500);
+        }
+
+        function selectPlace(placeId, description) {
+            document.getElementById('place-id').value = placeId;
+            alert(`Selected: ${description}\nPlace ID: ${placeId}`);
+        }
+
+        async function testPlaceDetails() {
+            const placeId = document.getElementById('place-id').value;
+            const result = document.getElementById('place-details-result');
+            
+            if (!placeId.trim()) {
+                result.textContent = 'Please enter a place_id';
+                return;
+            }
+            
+            if (!window.__mt?.setting?.api_prediction_coords) {
+                result.textContent = 'Error: API prediction coords endpoint not configured';
+                return;
+            }
+            
+            try {
+                const url = `${window.__mt.setting.api_prediction_coords}?place_id=${encodeURIComponent(placeId)}`;
+                result.textContent = `Calling: ${url}\n\nLoading...`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                result.textContent = `Status: ${response.status}\nURL: ${url}\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        // Auto-check config on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(checkConfig, 500);
+        });
+    </script>
+</body>
+</html>

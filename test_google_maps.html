@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+        .result { background: #f5f5f5; padding: 10px; margin-top: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+        #map { height: 300px; width: 100%; margin: 10px 0; }
+        input[type="text"] { width: 300px; padding: 8px; margin: 5px; }
+        button { padding: 8px 15px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Google Maps API Test</h1>
+    
+    <div class="test-section">
+        <h3>1. API Key Test</h3>
+        <p>Current API Key: <span id="api-key"></span></p>
+        <button onclick="testApiKey()">Test API Key</button>
+        <div id="api-key-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. Places Autocomplete Test</h3>
+        <input type="text" id="autocomplete-input" placeholder="Type a location...">
+        <div id="autocomplete-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. Places Search Test</h3>
+        <input type="text" id="search-input" placeholder="Search location..." value="Madrid Airport">
+        <button onclick="testPlacesSearch()">Search</button>
+        <div id="search-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>4. Map Test</h3>
+        <div id="map"></div>
+        <div id="map-result" class="result"></div>
+    </div>
+
+    <script>
+        // Get API key from config
+        let apiKey = '';
+        
+        // Test if MyTransfers config is available
+        if (window.__mt && window.__mt.setting && window.__mt.setting.google_map) {
+            const url = window.__mt.setting.google_map;
+            const keyMatch = url.match(/key=([^&]+)/);
+            if (keyMatch) {
+                apiKey = keyMatch[1];
+            }
+        }
+        
+        document.getElementById('api-key').textContent = apiKey || 'Not found';
+
+        function testApiKey() {
+            const result = document.getElementById('api-key-result');
+            
+            if (!apiKey) {
+                result.innerHTML = '<span class="error">API key not found in configuration</span>';
+                return;
+            }
+            
+            // Test by loading a simple Maps API request
+            const testUrl = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGoogleMaps`;
+            
+            window.initGoogleMaps = function() {
+                result.innerHTML = '<span class="success">✓ API key is valid and Google Maps loaded successfully</span>';
+                initAutocomplete();
+                initMap();
+            };
+            
+            window.googleMapsError = function() {
+                result.innerHTML = '<span class="error">✗ API key is invalid or has restrictions</span>';
+            };
+            
+            // Load Google Maps API
+            const script = document.createElement('script');
+            script.src = testUrl;
+            script.onerror = function() {
+                result.innerHTML = '<span class="error">✗ Failed to load Google Maps API</span>';
+            };
+            document.head.appendChild(script);
+        }
+
+        function initAutocomplete() {
+            if (!window.google || !window.google.maps || !window.google.maps.places) {
+                document.getElementById('autocomplete-result').innerHTML = 
+                    '<span class="error">Google Places API not available</span>';
+                return;
+            }
+
+            const input = document.getElementById('autocomplete-input');
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            
+            autocomplete.addListener('place_changed', function() {
+                const place = autocomplete.getPlace();
+                const result = document.getElementById('autocomplete-result');
+                
+                if (place.geometry) {
+                    result.innerHTML = `
+                        <span class="success">✓ Autocomplete working!</span><br>
+                        <strong>Place:</strong> ${place.name || place.formatted_address}<br>
+                        <strong>Coordinates:</strong> ${place.geometry.location.lat()}, ${place.geometry.location.lng()}
+                    `;
+                } else {
+                    result.innerHTML = '<span class="error">No geometry data for this place</span>';
+                }
+            });
+            
+            document.getElementById('autocomplete-result').innerHTML = 
+                '<span class="success">✓ Autocomplete initialized - start typing above</span>';
+        }
+
+        function testPlacesSearch() {
+            if (!window.google || !window.google.maps || !window.google.maps.places) {
+                document.getElementById('search-result').innerHTML = 
+                    '<span class="error">Google Places API not available</span>';
+                return;
+            }
+
+            const query = document.getElementById('search-input').value;
+            const service = new google.maps.places.AutocompleteService();
+            
+            service.getPlacePredictions({
+                input: query,
+                types: ['establishment', 'geocode']
+            }, function(predictions, status) {
+                const result = document.getElementById('search-result');
+                
+                if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                    let html = '<span class="success">✓ Places search working!</span><br><strong>Results:</strong><ul>';
+                    predictions.slice(0, 5).forEach(prediction => {
+                        html += `<li>${prediction.description}</li>`;
+                    });
+                    html += '</ul>';
+                    result.innerHTML = html;
+                } else {
+                    result.innerHTML = `<span class="error">✗ Places search failed: ${status}</span>`;
+                }
+            });
+        }
+
+        function initMap() {
+            if (!window.google || !window.google.maps) {
+                document.getElementById('map-result').innerHTML = 
+                    '<span class="error">Google Maps API not available</span>';
+                return;
+            }
+
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 40.4168, lng: -3.7038 }, // Madrid
+                zoom: 10
+            });
+
+            // Add a marker
+            new google.maps.Marker({
+                position: { lat: 40.4168, lng: -3.7038 },
+                map: map,
+                title: 'Madrid'
+            });
+
+            document.getElementById('map-result').innerHTML = 
+                '<span class="success">✓ Map loaded successfully</span>';
+        }
+
+        // Auto-test on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for MyTransfers config to load
+            setTimeout(function() {
+                if (window.__mt && window.__mt.setting) {
+                    testApiKey();
+                } else {
+                    document.getElementById('api-key-result').innerHTML = 
+                        '<span class="error">MyTransfers configuration not found. Make sure you\'re accessing this from the main site.</span>';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

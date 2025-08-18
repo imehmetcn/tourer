@@ -3,9 +3,11 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# API rules (preserve original)
+# API rules (orijinal MyTransfers.com sitesi gibi)
 RewriteRule ^api/?$ api/index.php [L,QSA]
 RewriteRule ^api/(.*)$ api/index.php [L,QSA]
+RewriteRule ^mytransfers/api/?$ api/index.php [L,QSA]
+RewriteRule ^mytransfers/api/(.*)$ api/index.php [L,QSA]
 
 # Language-based URL routing
 # Smart redirect for root URL based on user preference
@@ -13,6 +15,11 @@ RewriteRule ^$ language_redirect.php [L]
 
 # Language routes: /en, /tr, /de, /fr, /es
 RewriteRule ^(en|tr|de|fr|es)/?$ index.php?lang=$1 [L,QSA]
+
+# MyTransfers.com style routing
+RewriteRule ^mytransfers/(en|tr|de|fr|es)/?$ index.php?lang=$1 [L,QSA]
+RewriteRule ^mytransfers/(en|tr|de|fr|es)/search/?$ search.php?lang=$1 [L,QSA]
+RewriteRule ^mytransfers/(en|tr|de|fr|es)/checkout/?$ public/checkout.html?lang=$1 [L,QSA]
 
 # Language routes with paths (but exclude assets, api, admin, public, includes, storage)
 RewriteCond %{REQUEST_URI} !^/(en|tr|de|fr|es)/(assets|api|admin|public|includes|storage)/

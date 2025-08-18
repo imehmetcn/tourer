@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Search Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .search-container { margin: 20px 0; }
+        .search-input { width: 300px; padding: 10px; font-size: 16px; }
+        .search-results { border: 1px solid #ccc; max-height: 200px; overflow-y: auto; display: none; }
+        .search-item { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .search-item:hover { background: #f0f0f0; }
+        .selected { background: #e6f3ff; }
+        .debug { background: #f5f5f5; padding: 10px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Frontend Search Test</h1>
+    
+    <div class="search-container">
+        <h3>From Location</h3>
+        <input type="text" id="from-input" class="search-input" placeholder="Type pickup location...">
+        <div id="from-results" class="search-results"></div>
+        <div id="from-debug" class="debug"></div>
+    </div>
+    
+    <div class="search-container">
+        <h3>To Location</h3>
+        <input type="text" id="to-input" class="search-input" placeholder="Type dropoff location...">
+        <div id="to-results" class="search-results"></div>
+        <div id="to-debug" class="debug"></div>
+    </div>
+
+    <script>
+        // Simulate MyTransfers configuration
+        window.__mt = {
+            setting: {
+                api_search: '/mytransfers/api/search',
+                api_predictions: '/mytransfers/api/predictions',
+                api_prediction_coords: '/mytransfers/api/prediction'
+            }
+        };
+
+        class SearchHandler {
+            constructor(inputId, resultsId, debugId) {
+                this.input = document.getElementById(inputId);
+                this.results = document.getElementById(resultsId);
+                this.debug = document.getElementById(debugId);
+                this.searchTimeout = null;
+                
+                this.input.addEventListener('input', (e) => this.handleInput(e.target.value));
+                this.input.addEventListener('focus', () => this.showResults());
+                document.addEventListener('click', (e) => {
+                    if (!this.input.contains(e.target) && !this.results.contains(e.target)) {
+                        this.hideResults();
+                    }
+                });
+            }
+            
+            handleInput(query) {
+                clearTimeout(this.searchTimeout);
+                
+                if (query.length < 2) {
+                    this.hideResults();
+                    return;
+                }
+                
+                this.debug.textContent = 'Searching...';
+                
+                this.searchTimeout = setTimeout(() => {
+                    this.search(query);
+                }, 300);
+            }
+            
+            async search(query) {
+                try {
+                    // Test both endpoints
+                    const searchUrl = `${window.__mt.setting.api_search}?query=${encodeURIComponent(query)}`;
+                    const predictionsUrl = `${window.__mt.setting.api_predictions}?q=${encodeURIComponent(query)}`;
+                    
+                    this.debug.textContent = `Calling: ${searchUrl}`;
+                    
+                    const [searchResponse, predictionsResponse] = await Promise.all([
+                        fetch(searchUrl).catch(e => null),
+                        fetch(predictionsUrl).catch(e => null)
+                    ]);
+                    
+                    let allResults = [];
+                    let debugInfo = '';
+                    
+                    // Process search API results
+                    if (searchResponse && searchResponse.ok) {
+                        const searchData = await searchResponse.json();
+                        if (searchData.response && searchData.response.predictions) {
+                            allResults = allResults.concat(searchData.response.predictions.map(item => ({
+                                ...item,
+                                source: 'search'
+                            })));
+                        }
+                        debugInfo += `Search API: ${searchResponse.status} OK, ${searchData.response?.predictions?.length || 0} results\n`;
+                    } else {
+                        debugInfo += `Search API: ${searchResponse ? searchResponse.status : 'Failed'}\n`;
+                    }
+                    
+                    // Process predictions API results
+                    if (predictionsResponse && predictionsResponse.ok) {
+                        const predictionsData = await predictionsResponse.json();
+                        if (Array.isArray(predictionsData)) {
+                            allResults = allResults.concat(predictionsData.map(item => ({
+                                ...item,
+                                source: 'predictions'
+                            })));
+                        }
+                        debugInfo += `Predictions API: ${predictionsResponse.status} OK, ${predictionsData.length || 0} results\n`;
+                    } else {
+                        debugInfo += `Predictions API: ${predictionsResponse ? predictionsResponse.status : 'Failed'}\n`;
+                    }
+                    
+                    this.debug.textContent = debugInfo;
+                    this.displayResults(allResults);
+                    
+                } catch (error) {
+                    this.debug.textContent = `Error: ${error.message}`;
+                    this.hideResults();
+                }
+            }
+            
+            displayResults(results) {
+                if (results.length === 0) {
+                    this.results.innerHTML = '<div class="search-item">No results found</div>';
+                } else {
+                    this.results.innerHTML = results.map(result => 
+                        `<div class="search-item" onclick="selectResult('${result.place_id}', '${result.description}', this)">
+                            <strong>${result.description}</strong>
+                            <small style="color: #666; margin-left: 10px;">(${result.source})</small>
+                        </div>`
+                    ).join('');
+                }
+                this.showResults();
+            }
+            
+            showResults() {
+                this.results.style.display = 'block';
+            }
+            
+            hideResults() {
+                this.results.style.display = 'none';
+            }
+        }
+        
+        function selectResult(placeId, description, element) {
+            // Find the input associated with this result
+            const resultsDiv = element.closest('.search-results');
+            const container = resultsDiv.closest('.search-container');
+            const input = container.querySelector('.search-input');
+            
+            input.value = description;
+            resultsDiv.style.display = 'none';
+            
+            // Test place details
+            testPlaceDetails(placeId, container.querySelector('.debug'));
+        }
+        
+        async function testPlaceDetails(placeId, debugElement) {
+            try {
+                const url = `${window.__mt.setting.api_prediction_coords}?place_id=${encodeURIComponent(placeId)}`;
+                debugElement.textContent += `\nGetting coordinates for ${placeId}...`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                debugElement.textContent += `\nCoordinates: ${JSON.stringify(data)}`;
+            } catch (error) {
+                debugElement.textContent += `\nCoordinates error: ${error.message}`;
+            }
+        }
+        
+        // Initialize search handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            new SearchHandler('from-input', 'from-results', 'from-debug');
+            new SearchHandler('to-input', 'to-results', 'to-debug');
+        });
+    </script>
+</body>
+</html>
